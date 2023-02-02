@@ -12,23 +12,20 @@ controller controller1;
 
 //these are the wheel motors (mechanum drive)
 motor backRightDrive(PORT20); 
-motor frontRightDrive(PORT10); 
+motor frontRightDrive(PORT18); 
 motor frontLeftDrive(PORT1); 
-motor backLeftDrive(PORT11); 
+motor backLeftDrive(PORT9); 
 
-motor rollerMotor(PORT18); //roller motor?
+motor rollerMotor(PORT3); //roller motor?
 
-motor conveyorMotor(PORT18); //conveyor motor (also intake)
+motor conveyorMotor(PORT10); //conveyor motor (also intake)
 
 motor launcherR(PORT16); //launcher right motor
 motor launcherL(PORT15); //launcher left motor
 
-motor expandMotor(PORT14); //expansion
+motor expandMotor(PORT13); //expansion
 
-gps GPSSensor = gps(PORT21, 0.00, -101.60, mm, 180);
-signature colorSensor__REDSIDE = signature (1, 3841, 6401, 5122, -449, 1727, 638, 2.5, 0);
-signature colorSensor__BLUESIDE = signature (2, -3355, -2591, -2972, 11569, 13569, 12570, 5.5, 0);
-vision colorSensor = vision (PORT14, 50, colorSensor__REDSIDE, colorSensor__BLUESIDE);
+gps GPSSensor = gps(PORT12, 0, 0, mm, 0);
 
 // VEXcode generated functions
 

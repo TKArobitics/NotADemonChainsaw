@@ -36,91 +36,83 @@ competition Competition;
 void pre_auton(void) {
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
+  GPSSensor.setLocation(-1.5, -1.14, mm, 270, degrees);
   // All activities that occur before the competition starts
   // Example: clearing encoders, setting servo positions, ...
 }
 
-void allForward(int z){
-  frontLeftDrive.startRotateFor(forward,z,deg);
-  frontRightDrive.startRotateFor(reverse,z,deg);
-  backLeftDrive.startRotateFor(forward,z,deg);
-  backRightDrive.startRotateFor(reverse,z,deg);
+void driveForward(int distance){
+  frontLeftDrive.spinFor(forward, distance, degrees);
+  frontRightDrive.spinFor(reverse, distance, degrees);
+  backLeftDrive.spinFor(forward, distance, degrees);
+  backRightDrive.spinFor(reverse, distance, degrees);
 }
-
-void allStop(){
-  frontLeftDrive.stop(hold);
-  frontRightDrive.stop(hold);
-  backLeftDrive.stop(hold);
-  backRightDrive.stop(hold);
+void driveReverse(int distance){
+  frontLeftDrive.spinFor(reverse, distance, degrees);
+  frontRightDrive.spinFor(forward, distance, degrees);
+  backLeftDrive.spinFor(reverse, distance, degrees);
+  backRightDrive.spinFor(forward, distance, degrees);
 }
-
-void startLauncher(){
-  launcherR.spin(forward);
-  launcherL.spin(reverse);
+void turnRight(){
+  frontLeftDrive.spinFor(forward, 180, degrees);
+  frontRightDrive.spinFor(reverse, 180, degrees);
 }
-
-void turnAndIntake(long z){
-  conveyorMotor.startRotateFor(forward,z,deg);
-}
-
-void mechaniumRight(int howFar){
-  frontLeftDrive.startRotateFor(forward,howFar,deg);
-  frontRightDrive.startRotateFor(forward,howFar,deg);
-  backLeftDrive.startRotateFor(reverse,howFar,deg);
-  backRightDrive.startRotateFor(reverse,howFar,deg);
-}
-
-void mechaniumLeft(int howFar){
-  frontLeftDrive.startRotateFor(reverse,howFar,deg);
-  frontRightDrive.startRotateFor(reverse,howFar,deg);
-  backLeftDrive.startRotateFor(forward,howFar,deg);
-  backRightDrive.startRotateFor(forward,howFar,deg);
-}
-// the turn and intake are not spining enough
-void shortSide (){
-  launcherL.setVelocity(100, pct);
-  launcherL.setVelocity(100, pct);
-  startLauncher();
-  wait(2, sec);
-  turnAndIntake(1000000);
-  allForward(50);
-  allStop();
-  turnAndIntake(90);
-}
-
-void longSide (){
-  launcherL.setVelocity(100, pct);
-  launcherL.setVelocity(100, pct);
-  mechaniumRight(90);
-  allForward(90);
-  allStop();
-  turnAndIntake(90);
-  startLauncher();
-  turnAndIntake(1000);
-}
-
-void driveForward(int duration){
-  
-  frontLeftDrive.spin(forward);
-  frontRightDrive.spin(reverse);
-  backLeftDrive.spin(forward);
-  backRightDrive.spin(reverse);
-
+void turnLeft(){
+  frontLeftDrive.spinFor(reverse, 180, degrees);
+  frontRightDrive.spinFor(forward, 180, degrees);
 }
 
 void turnRoller(int amount){
-  rollerMotor.spinFor(forward, amount, degrees);
+  conveyorMotor.spinFor(forward, amount, degrees);
 }
 
 
+bool launchControl = false;
+
+void launcher (){
+  if (controller1.ButtonL1.pressing()){
+    launchControl = true;
+  }
+  if (controller1.ButtonL2.pressing()){
+    launchControl = false;
+  }
+  if (launchControl){
+    launcherR.spin(reverse, 80,velocityUnits::pct);
+    launcherL.spin(forward, 100,velocityUnits::pct);
+  }
+  if(!launchControl){
+    launcherR.stop();
+    launcherL.stop();
+  }
+}
+
+void autoSkill(){
+  expandMotor.spin(reverse);
+}
+void normalAutonomous(){
+  driveForward(180);
+  conveyorMotor.spinFor(forward, 270, degrees);
+}
+
 void autonomous(void) {
-  //shortSide();
+
+  //normalAutonomous();
+  autoSkill();
+
+  //dont chenge this!!
+  Brain.resetTimer();
+  while(1){
+    if(Brain.Timer.value()<3){
+      //adjust either the time or the motor power
+      conveyorMotor.spin(forward, 30, pct);
+    }
+  }
 }
 
 /*---------------------------------------------------------------------------*/
 /*                                                                           */
 /*                              User Control Task                            */
-/*                                                                        */
+/*                                                                           */
 /*  This task is used to control your robot during the user control phase of */
 /*  a VEX Competition.                                                       */
 /*                                                 5                          */
@@ -131,35 +123,35 @@ void autonomous(void) {
 int conveyor = 0;
 
 void conveyorStart (){
-  if (controller1.ButtonL1.pressing()){
+  if (controller1.ButtonR1.pressing()){
     conveyor =  1;
   }
-  if(controller1.ButtonL2.pressing()){
+  if(controller1.ButtonR2.pressing()){
     conveyor = 0;
   }
-  if(controller1.ButtonRight.pressing()){
+  if(controller1.ButtonDown.pressing()){
     conveyor = -1;
   }
 }
 
 void conveyorControl(){
-  //conveyorStart();
+  conveyorStart();
   if (conveyor ==  1) {
     conveyorMotor.spin(vex::forward, 100, velocityUnits::pct);
   }
-  else if (conveyor ==  -1){
-    conveyorMotor.spin(vex::reverse, 100, velocityUnits::pct);
-  }
   else if (conveyor ==  0){
-    if (controller1.ButtonA.pressing()){
-      conveyorMotor.spin(vex::forward, 50, pct);
-    }                 
-    else if (controller1.ButtonB.pressing()){
-      conveyorMotor.spin(vex::reverse, 50, pct);
+    if (controller1.ButtonB.pressing()){
+      conveyorMotor.spin(forward, 50, pct);
+    }
+    else if (controller1.ButtonA.pressing()) {
+      conveyorMotor.spin(reverse, 50, pct);
     }
     else{
       conveyorMotor.stop();
     }
+  }
+  else if (conveyor ==  -1){
+    conveyorMotor.spin(vex::reverse, 100, velocityUnits::pct);
   }
 }
 
@@ -207,14 +199,16 @@ void getLocation()
   float y = GPSSensor.yPosition(mm) / 1000;
   float z = GPSSensor.heading();
 
+
+
   Brain.Screen.clearScreen();
   Brain.Screen.setCursor(1,1);
   Brain.Screen.print("X value = ");
   Brain.Screen.print(x);
-  Brain.Screen.setCursor(2, 1);
+  Brain.Screen.setCursor(45, 1);
   Brain.Screen.print("Y value = ");
   Brain.Screen.print(y);
-  Brain.Screen.setCursor(3, 1);
+  Brain.Screen.setCursor(23, 23);
   Brain.Screen.print("Rotation = ");
   Brain.Screen.print(z);
 }
@@ -238,44 +232,28 @@ void crazyIdea (int xvalue, int yvalue){
 }
 
 void expand (){
-  if(controller1.ButtonLeft.pressing() && Brain.Timer.value() > 90){
-    expandMotor.spin(reverse, 100, pct); 
+  if(controller1.ButtonUp.pressing()){
+    expandMotor.spin(reverse, 100, pct);
   }
-  else{
+  else {
     expandMotor.stop();
   }
 }
-
-bool whichWay = 0;
 
 void mechaniumWheels(){
   int axis1 = controller1.Axis1.position();
   int axis3 = controller1.Axis3.position();
   int axis4 = controller1.Axis4.position();
   
-  int frontRightWheel = axis3 - axis4 - axis1;
-  int frontLeftWheel = axis3 + axis4 + axis1;
-  int backRightWheel = axis3 + axis4 - axis1;
-  int backLeftWheel = axis3 - axis4 + axis1;
-  
-  if (controller1.ButtonUp.pressing()){
-    whichWay = 1;
-  }
-  if (controller1.ButtonDown.pressing()){
-    whichWay = 0;
-  }
-  if (whichWay == 0){
-    frontLeftDrive.spin(vex::forward, frontLeftWheel, vex::percent);
-    backLeftDrive.spin(vex::forward, backLeftWheel, vex::percent);
-    frontRightDrive.spin(vex::reverse, frontRightWheel, vex::percent);
-    backRightDrive.spin(vex::reverse, backRightWheel, vex::percent);
-  }
-  if (whichWay == 1){
+  int backLeftWheel = axis3 - axis4 - axis1; //fr
+  int backRightWheel = axis3 + axis4 + axis1; //fl
+  int frontLeftWheel = axis3 + axis4 - axis1; //br
+  int frontRightWheel = axis3 - axis4 + axis1; //bl
+
   frontLeftDrive.spin(vex::reverse, frontLeftWheel, vex::percent);
   backLeftDrive.spin(vex::reverse, backLeftWheel, vex::percent);
   frontRightDrive.spin(vex::forward, frontRightWheel, vex::percent);
   backRightDrive.spin(vex::forward, backRightWheel, vex::percent);
-  }
 }
 
 void acklenNator (){
@@ -331,8 +309,7 @@ void robotTurn (int v){
   backLeftDrive.spin(vex::forward, v, vex::percent);
   frontRightDrive.spin(vex::reverse, -v, vex::percent);
   backRightDrive.spin(vex::reverse, -v, vex::percent);
-}   
-
+}
 
 void robotAdvance (int v){
   frontLeftDrive.spin(vex::forward, v, vex::percent);
@@ -440,55 +417,9 @@ void screenDisplay(){
   controller1.Screen.print(Rotation);
 }
 
-bool launchControl = false;
-bool launchFast = true;
-int x = 100;
-
-void launcher (){
-  if (controller1.ButtonR1.pressing()){
-    launchControl = true;
-  }
-  if (controller1.ButtonR2.pressing()){
-    launchControl = false;
-  }
-  if (controller1.ButtonX.pressing()){
-    launchFast = false;
-  }
-  if (controller1.ButtonY.pressing()){
-    launchFast = true;
-  }
-  if (launchControl){
-    if(launchFast){ 
-      launcherR.spin(forward, x,velocityUnits::pct);
-      launcherL.spin(reverse, x,velocityUnits::pct);
-    }
-    if(!launchFast){ 
-      launcherR.spin(forward, x/2 ,velocityUnits::pct);
-      launcherL.spin(reverse, x/2 ,velocityUnits::pct);
-    }
-  }
-  if(!launchControl){
-    launcherR.stop();
-    launcherL.stop();
-  }
-  
-}
-
-void whatColor(){
-  Brain.Screen.clearScreen();
-  Brain.Screen.setCursor(1,1);
-  colorSensor.takeSnapshot(colorSensor__REDSIDE);
-  if (colorSensor.objectCount >= 1){
-    Brain.Screen.print("YAYAYAYAYAYAYAYAYAYAYAYAYAYAYAY");
-  }
-  else{
-    Brain.Screen.print(";-;");
-  }
-}
 
 void usercontrol(void) {
   // User control code here, inside the loop
-  Brain.Timer.reset();
   while (1) {
     // This is the main execution loop for the user control program.
     // Each time through the loop your program should update motor + servo
@@ -497,20 +428,17 @@ void usercontrol(void) {
     // Insert user code here. This is where you use the joystick values to
     // update your motors, etc.
     // ........................................................................
-    conveyorStart();
+
     conveyorControl(); //intake
     launcher(); //output launcher
     mechaniumWheels(); //drivecontrol
     expand(); //Expander
 
-    // //rollerThing();//roller
-    // getLocation();
-    // //posisioning(180);
-    // //acklenNator(); //drivercontrol
-    // //screenDisplay();
-
-
-    // whatColor();
+    //rollerThing();//roller
+    //getLocation();
+    //posisioning(180);
+    //acklenNator(); //drivercontrol
+    //screenDisplay();
 
     wait(20, msec); // Sleep the task for a short amount of time to
                     // prevent wasted resources.

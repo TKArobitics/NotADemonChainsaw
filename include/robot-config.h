@@ -21,9 +21,6 @@ extern motor launcherL;
 extern motor expandMotor;
 
 extern gps GPSSensor;
-extern vision colorSensor;
-extern vision::signature colorSensor__REDSIDE;
-extern vision::signature colorSensor__BLUESIDE;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
