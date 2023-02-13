@@ -41,70 +41,26 @@ void pre_auton(void) {
   // Example: clearing encoders, setting servo positions, ...
 }
 
-void driveForward(int distance){
-  frontLeftDrive.spinFor(forward, distance, degrees);
-  frontRightDrive.spinFor(reverse, distance, degrees);
-  backLeftDrive.spinFor(forward, distance, degrees);
-  backRightDrive.spinFor(reverse, distance, degrees);
-}
-void driveReverse(int distance){
-  frontLeftDrive.spinFor(reverse, distance, degrees);
-  frontRightDrive.spinFor(forward, distance, degrees);
-  backLeftDrive.spinFor(reverse, distance, degrees);
-  backRightDrive.spinFor(forward, distance, degrees);
-}
-void turnRight(){
-  frontLeftDrive.spinFor(forward, 180, degrees);
-  frontRightDrive.spinFor(reverse, 180, degrees);
-}
-void turnLeft(){
-  frontLeftDrive.spinFor(reverse, 180, degrees);
-  frontRightDrive.spinFor(forward, 180, degrees);
-}
 
-void turnRoller(int amount){
-  conveyorMotor.spinFor(forward, amount, degrees);
-}
-
-
-bool launchControl = false;
-
-void launcher (){
-  if (controller1.ButtonL1.pressing()){
-    launchControl = true;
-  }
-  if (controller1.ButtonL2.pressing()){
-    launchControl = false;
-  }
-  if (launchControl){
-    launcherR.spin(reverse, 80,velocityUnits::pct);
-    launcherL.spin(forward, 100,velocityUnits::pct);
-  }
-  if(!launchControl){
-    launcherR.stop();
-    launcherL.stop();
-  }
-}
-
-void autoSkill(){
-  expandMotor.spin(reverse);
-}
-void normalAutonomous(){
-  driveForward(180);
-  conveyorMotor.spinFor(forward, 270, degrees);
-}
+/*---------------------------------------------------------------------------*/
+/*                                                                           */
+/*                              Autonomous Task                              */
+/*                                                                           */
+/*  This task is used to control your robot during the autonomous phase of   */
+/*  a VEX Competition.                                                       */
+/*                                                                           */
+/*  You must modify the code to add your own robot specific commands here.   */
+/*---------------------------------------------------------------------------*/
 
 void autonomous(void) {
-
-  //normalAutonomous();
-  autoSkill();
-
-  //dont chenge this!!
-  Brain.resetTimer();
+  // ..........................................................................
+  // Insert autonomous user code here.
+  // ..........................................................................
+Brain.resetTimer();
   while(1){
     if(Brain.Timer.value()<3){
       //adjust either the time or the motor power
-      conveyorMotor.spin(forward, 30, pct);
+      spinnyMotor.spin(forward, 30, pct);
     }
   }
 }
@@ -119,60 +75,54 @@ void autonomous(void) {
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
 
+int spinnyThing = 0;
 
-int conveyor = 0;
-
-void conveyorStart (){
+void spinnyThingStart (){
   if (controller1.ButtonR1.pressing()){
-    conveyor =  1;
+    spinnyThing =  1;
   }
   if(controller1.ButtonR2.pressing()){
-    conveyor = 0;
+    spinnyThing = 0;
   }
   if(controller1.ButtonDown.pressing()){
-    conveyor = -1;
+    spinnyThing = -1;
   }
 }
 
-void conveyorControl(){
-  conveyorStart();
-  if (conveyor ==  1) {
-    conveyorMotor.spin(vex::forward, 100, velocityUnits::pct);
+void spinnyThingControl(){
+  spinnyThingStart();
+  if (spinnyThing ==  1) {
+    spinnyMotor.spin(vex::forward, 100, velocityUnits::pct);
   }
-  else if (conveyor ==  0){
+  if (spinnyThing ==  0){
     if (controller1.ButtonB.pressing()){
-      conveyorMotor.spin(forward, 50, pct);
-    }
-    else if (controller1.ButtonA.pressing()) {
-      conveyorMotor.spin(reverse, 50, pct);
+    spinnyMotor.spin(forward, 50, pct);
     }
     else{
-      conveyorMotor.stop();
+      spinnyMotor.stop();
     }
   }
-  else if (conveyor ==  -1){
-    conveyorMotor.spin(vex::reverse, 100, velocityUnits::pct);
+  if (spinnyThing ==  -1){
+    spinnyMotor.spin(vex::reverse, 100, velocityUnits::pct);
   }
 }
 
-void rollerControl (int i){
- rollerMotor.spin(vex::reverse, 50 * i, velocityUnits::pct);
+void turnyThingControl (int i){
+ turnyMotor.spin(vex::reverse, 50 * i, velocityUnits::pct);
 }
 
-//allows for forward and reverse control of the roller
-void rollerThing(){ 
+void turnyThing(){
   if(controller1.ButtonA.pressing()){
-    rollerControl(1);
+    turnyThingControl(1);
   }
   if(controller1.ButtonB.pressing()){
-    rollerControl(-1);
+    turnyThingControl(-1);
   }
   else{
-    rollerMotor.stop();
+    turnyMotor.stop();
   }
 }
 
-//prints to the brain
 void printDrive (int input, int another){
   Brain.Screen.clearScreen();
   Brain.Screen.setCursor(1,1);
@@ -231,12 +181,9 @@ void crazyIdea (int xvalue, int yvalue){
   backRightDrive.spin(vex::reverse, backRightWheel, vex::percent);
 }
 
-void expand (){
+void PULLTHELEVER (){
   if(controller1.ButtonUp.pressing()){
-    expandMotor.spin(reverse, 100, pct);
-  }
-  else {
-    expandMotor.stop();
+    THELEVER.spin(forward, 100, pct);
   }
 }
 
@@ -244,12 +191,10 @@ void mechaniumWheels(){
   int axis1 = controller1.Axis1.position();
   int axis3 = controller1.Axis3.position();
   int axis4 = controller1.Axis4.position();
-  
-  int backLeftWheel = axis3 - axis4 - axis1; //fr
-  int backRightWheel = axis3 + axis4 + axis1; //fl
-  int frontLeftWheel = axis3 + axis4 - axis1; //br
-  int frontRightWheel = axis3 - axis4 + axis1; //bl
-
+  int frontRightWheel = axis3 - axis4 - axis1;
+  int frontLeftWheel = axis3 + axis4 + axis1;
+  int backRightWheel = axis3 + axis4 - axis1;
+  int backLeftWheel = axis3 - axis4 + axis1;
   frontLeftDrive.spin(vex::reverse, frontLeftWheel, vex::percent);
   backLeftDrive.spin(vex::reverse, backLeftWheel, vex::percent);
   frontRightDrive.spin(vex::forward, frontRightWheel, vex::percent);
@@ -284,14 +229,11 @@ void displayWheels (){
   int axis1 = controller1.Axis1.position();
   int axis3 = controller1.Axis3.position();
   int axis4 = controller1.Axis4.position();
-
   int frontRightWheel = axis3 - axis4 - axis1;
   int frontLeftWheel = axis3 + axis4 + axis1;
   int backRightWheel = axis3 + axis4 - axis1;
   int backLeftWheel = axis3 - axis4 + axis1;
-
   Brain.Screen.clearScreen();
-  
   Brain.Screen.print("Front right Wheel: ");
   Brain.Screen.print(frontRightWheel);
   Brain.Screen.print(" Front left Wheel: ");
@@ -417,6 +359,26 @@ void screenDisplay(){
   controller1.Screen.print(Rotation);
 }
 
+bool launchControl = 1;
+
+void launcher (){
+  if (controller1.ButtonL1.pressing()){
+    launchControl = 1;
+  }
+  if (controller1.ButtonL2.pressing()){
+    launchControl = 0;
+  }
+  if (launchControl == 1){
+    launcherR.spin(reverse, 100,velocityUnits::pct);
+    launcherL.spin(forward, 100,velocityUnits::pct);
+  }
+  if(launchControl == 0){
+    launcherR.stop();
+    launcherL.stop();
+  }
+}
+
+
 
 void usercontrol(void) {
   // User control code here, inside the loop
@@ -429,15 +391,15 @@ void usercontrol(void) {
     // update your motors, etc.
     // ........................................................................
 
-    conveyorControl(); //intake
-    launcher(); //output launcher
-    mechaniumWheels(); //drivecontrol
-    expand(); //Expander
+    spinnyThingControl();//intake
+    launcher();//output launcher
+    mechaniumWheels();//drivecontrol
+    PULLTHELEVER();//Expander
 
-    //rollerThing();//roller
+    //turnyThing();//roller
     //getLocation();
     //posisioning(180);
-    //acklenNator(); //drivercontrol
+    //acklenNator();
     //screenDisplay();
 
     wait(20, msec); // Sleep the task for a short amount of time to
@@ -446,6 +408,9 @@ void usercontrol(void) {
 }
 
 
+//
+// Main will set up the competition functions and callbacks.
+//
 int main() {
   // Set up callbacks for autonomous and driver control periods.
   Competition.autonomous(autonomous);
