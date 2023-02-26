@@ -1,5 +1,6 @@
 using namespace vex;
 
+
 extern brain Brain;
 
 // VEXcode devices
@@ -20,7 +21,12 @@ extern motor launcherL;
 
 extern motor expandMotor;
 
+extern motor testMotor;
+
 extern gps GPSSensor;
+extern vision colorSensor;
+extern vision::signature colorSensor__REDSIDE;
+extern vision::signature colorSensor__BLUESIDE;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.

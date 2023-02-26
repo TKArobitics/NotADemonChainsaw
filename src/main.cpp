@@ -13,13 +13,11 @@
 // GPS21                gps           21              
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
-
-
 #include "vex.h"
 
 using namespace vex;
 
-// A global instance of competition!!!
+// A global instance of competition
 competition Competition;
 
 // define your global instances of motors and other devices here
@@ -38,7 +36,6 @@ competition Competition;
 void pre_auton(void) {
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
-  GPSSensor.setLocation(-1.5, -1.14, mm, 270, degrees);
   // All activities that occur before the competition starts
   // Example: clearing encoders, setting servo positions, ...
 }
