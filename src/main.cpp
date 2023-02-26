@@ -19,7 +19,7 @@
 
 using namespace vex;
 
-// A global instance of competition
+// A global instance of competition!!!
 competition Competition;
 
 // define your global instances of motors and other devices here
