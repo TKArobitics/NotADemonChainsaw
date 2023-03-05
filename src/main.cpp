@@ -33,12 +33,6 @@ competition Competition;
 /*---------------------------------------------------------------------------*/
 
 
-
-
-
-
-
-
 void pre_auton(void) {
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
@@ -251,7 +245,10 @@ void conveyorControl(){
 
 void pusher(){
   if (controller1.ButtonR1.pressing()){
-    pusherMotor.spin(reverse, 100, pct);
+    pusherMotor.spin(forward, 100, pct);
+  }
+  else if(controller1.ButtonR2.pressing()){
+    pusherMotor.stop();
   }
 }
 
@@ -643,6 +640,8 @@ void usercontrol(void) {
     mechaniumWheels(); //drivecontrol
     expand(); //Expander
     troubleShooting();
+    pusher();
+
 
     rollerThing();
     //roller
