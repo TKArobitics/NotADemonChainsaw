@@ -33,6 +33,12 @@ competition Competition;
 /*---------------------------------------------------------------------------*/
 
 
+
+
+
+
+
+
 void pre_auton(void) {
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
