@@ -19,6 +19,8 @@ extern motor conveyorMotor;
 extern motor launcherR;
 extern motor launcherL;
 
+extern motor pusherMotor;
+
 extern motor expandMotor;
 
 extern motor testMotor;
