@@ -243,6 +243,12 @@ void conveyorControl(){
   }
 }
 
+void pusher(){
+  if (controller1.ButtonR1.pressing()){
+    pusherMotor.spin(reverse, 100, pct);
+  }
+}
+
 void rollerControl (float i){
  rollerMotor.spin(vex::reverse, 50 * i, velocityUnits::pct);
 }
