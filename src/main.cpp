@@ -10,7 +10,7 @@
 // ---- START VEXCODE CONFIGURED DEVICES ----
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
-// GPS21                gps           21              
+// GPS21                gps           21
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
@@ -32,115 +32,129 @@ competition Competition;
 /*  not every time that the robot is disabled.                               */
 /*---------------------------------------------------------------------------*/
 
-
-void pre_auton(void) {
+void pre_auton(void)
+{
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
   // All activities that occur before the competition starts
   // Example: clearing encoders, setting servo positions, ...
 }
 
-void setMotors(int prct){
+void setMotors(int prct)
+{
   frontLeftDrive.setVelocity(prct, pct);
   backLeftDrive.setVelocity(prct, pct);
   frontRightDrive.setVelocity(prct, pct);
   backRightDrive.setVelocity(prct, pct);
 }
 
-void turnRoller(int amount){
+void turnRoller(int amount)
+{
   rollerMotor.spinFor(reverse, amount, degrees, false);
 }
 
-void allForward(int dist){
+void allForward(int dist)
+{
   frontLeftDrive.spinFor(forward, dist, degrees, false);
   frontRightDrive.spinFor(reverse, dist, degrees, false);
   backRightDrive.spinFor(reverse, dist, degrees, false);
   backLeftDrive.spinFor(forward, dist, degrees);
 }
 
-void allForwardc(int dist){
+void allForwardc(int dist)
+{
   frontLeftDrive.spinFor(forward, dist, degrees, false);
   frontRightDrive.spinFor(reverse, dist, degrees, false);
   backRightDrive.spinFor(reverse, dist, degrees, false);
   backLeftDrive.spinFor(forward, dist, degrees, false);
 }
 
-
-void allStart(){
+void allStart()
+{
   frontLeftDrive.spin(forward);
   frontRightDrive.spin(reverse);
   backRightDrive.spin(reverse);
   backLeftDrive.spin(forward);
 }
 
-void allBrake(){
+void allBrake()
+{
   frontLeftDrive.stop(brake);
   frontRightDrive.stop(brake);
   backRightDrive.stop(brake);
   backLeftDrive.stop(brake);
 }
 
-void backLeftPivot(float dist){
+void backLeftPivot(float dist)
+{
   frontLeftDrive.spinFor(reverse, dist, degrees, false);
   frontRightDrive.spinFor(forward, dist, degrees, false);
   backRightDrive.spinFor(forward, dist, degrees, false);
   backLeftDrive.spinFor(forward, dist, degrees);
 }
 
-void tankTurn(int dist){
+void tankTurn(int dist)
+{
   frontLeftDrive.spinFor(forward, dist, degrees, false);
   frontRightDrive.spinFor(forward, dist, degrees, false);
   backRightDrive.spinFor(forward, dist, degrees, false);
   backLeftDrive.spinFor(forward, dist, degrees);
 }
 
-void autoMechan(int z){
+void autoMechan(int z)
+{
   frontLeftDrive.setVelocity(100, pct);
   backLeftDrive.setVelocity(200, pct);
   frontRightDrive.setVelocity(100, pct);
   backRightDrive.setVelocity(200, pct);
-  frontLeftDrive.spinFor(reverse,z,deg, false);
-  frontRightDrive.spinFor(reverse,z,deg, false);
-  backLeftDrive.spinFor(forward,z,deg, false);
-  backRightDrive.spinFor(forward,z,deg, false);
+  frontLeftDrive.spinFor(reverse, z, deg, false);
+  frontRightDrive.spinFor(reverse, z, deg, false);
+  backLeftDrive.spinFor(forward, z, deg, false);
+  backRightDrive.spinFor(forward, z, deg, false);
 }
 
-void expandSkill (){
+void expandSkill()
+{
   expandMotor.spin(reverse);
 }
 
-
-void allStop(){
+void allStop()
+{
   frontLeftDrive.stop(hold);
   frontRightDrive.stop(hold);
   backLeftDrive.stop(hold);
   backRightDrive.stop(hold);
 }
 
-void startLauncher(){
+void startLauncher()
+{
   launcherR.spin(forward);
   launcherL.spin(reverse);
 }
 
-void turnAndIntake(long z){
-  conveyorMotor.spinFor(forward,z,deg, false);
+void turnAndIntake(long z)
+{
+  conveyorMotor.spinFor(forward, z, deg, false);
 }
 
-void mechaniumRight(int howFar){
-  frontLeftDrive.spinFor(forward,howFar,deg, false);
-  frontRightDrive.spinFor(forward,howFar,deg, false);
-  backLeftDrive.spinFor(reverse,howFar,deg, false);
-  backRightDrive.spinFor(reverse,howFar,deg);
+void mechaniumRight(int howFar)
+{
+  frontLeftDrive.spinFor(forward, howFar, deg, false);
+  frontRightDrive.spinFor(forward, howFar, deg, false);
+  backLeftDrive.spinFor(reverse, howFar, deg, false);
+  backRightDrive.spinFor(reverse, howFar, deg);
 }
 
-void mechaniumLeft(int howFar){
-  frontLeftDrive.spinFor(reverse,howFar,deg, false);
-  frontRightDrive.spinFor(reverse,howFar,deg, false);
-  backLeftDrive.spinFor(forward,howFar,deg, false);
-  backRightDrive.spinFor(forward,howFar,deg, false);
+void mechaniumLeft(int howFar)
+{
+  frontLeftDrive.spinFor(reverse, howFar, deg, false);
+  frontRightDrive.spinFor(reverse, howFar, deg, false);
+  backLeftDrive.spinFor(forward, howFar, deg, false);
+  backRightDrive.spinFor(forward, howFar, deg, false);
 }
 // the turn and intake are not spining enough
-void shortSide (){
+void shortSide()
+{
   launcherL.setVelocity(100, pct);
   launcherL.setVelocity(100, pct);
   startLauncher();
@@ -151,7 +165,8 @@ void shortSide (){
   turnAndIntake(90);
 }
 
-void longSide (){
+void longSide()
+{
   launcherL.setVelocity(100, pct);
   launcherL.setVelocity(100, pct);
   mechaniumRight(90);
@@ -162,7 +177,8 @@ void longSide (){
   turnAndIntake(1000);
 }
 
-void skills (){
+void skills()
+{
   allForwardc(100);
   setMotors(100);
   turnRoller(100);
@@ -181,19 +197,19 @@ void skills (){
   expandSkill();
 }
 
-void driveForward(int duration){
-  
+void driveForward(int duration)
+{
+
   frontLeftDrive.spin(forward);
   frontRightDrive.spin(reverse);
   backLeftDrive.spin(forward);
   backRightDrive.spin(reverse);
-
 }
 
-
-void autonomous(void) {
+void autonomous(void)
+{
   // autoMechan(10000);
-  //shortSide();
+  // shortSide();
   skills();
 }
 
@@ -207,96 +223,123 @@ void autonomous(void) {
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
 
-
 int conveyor = 0;
 
-void conveyorStart (){
-  if (controller1.ButtonL1.pressing()){
-    conveyor =  1;
+void conveyorStart()
+{
+  if (controller1.ButtonL1.pressing())
+  {
+    conveyor = 1;
   }
-  if(controller1.ButtonL2.pressing()){
+  if (controller1.ButtonL2.pressing())
+  {
     conveyor = 0;
   }
-  if(controller1.ButtonRight.pressing()){
+  if (controller1.ButtonRight.pressing())
+  {
     conveyor = -1;
   }
 }
 
-void conveyorControl(){
-  //conveyorStart();
-  if (conveyor ==  1) {
+void conveyorControl()
+{
+  // conveyorStart();
+  if (conveyor == 1)
+  {
     conveyorMotor.spin(vex::forward, 100, velocityUnits::pct);
   }
-  else if (conveyor ==  -1){
+  else if (conveyor == -1)
+  {
     conveyorMotor.spin(vex::reverse, 100, velocityUnits::pct);
   }
-  else if (conveyor ==  0){
-    if (controller1.ButtonA.pressing()){
+  else if (conveyor == 0)
+  {
+    if (controller1.ButtonA.pressing())
+    {
       conveyorMotor.spin(vex::forward, 50, pct);
-    }                 
-    else if (controller1.ButtonB.pressing()){
+    }
+    else if (controller1.ButtonB.pressing())
+    {
       conveyorMotor.spin(vex::reverse, 50, pct);
     }
-    else{
+    else
+    {
       conveyorMotor.stop();
     }
   }
 }
 
-void pusher(){
-  if (controller1.ButtonR1.pressing()){
-    pusherMotor.spin(forward, 100, pct);
+void pusher()
+{
+  if (controller1.ButtonR1.pressing())
+  {
+    pusherMotor.spin(reverse, 80, pct);
   }
-  else if(controller1.ButtonR2.pressing()){
+  else
+  {
     pusherMotor.stop();
   }
+  // Brain.Screen.print(pusherMotor.getVelocity());
 }
 
-void rollerControl (float i){
- rollerMotor.spin(vex::reverse, 50 * i, velocityUnits::pct);
+void rollerControl(float i)
+{
+  rollerMotor.spin(vex::reverse, 50 * i, velocityUnits::pct);
 }
 
 bool fastRoller = true;
 
-void rollerSpeed(){
-  if(controller1.ButtonL1.pressing()){
+void rollerSpeed()
+{
+  if (controller1.ButtonL1.pressing())
+  {
     fastRoller = false;
   }
-  else if (controller1.ButtonL2.pressing()) {
+  else if (controller1.ButtonL2.pressing())
+  {
     fastRoller = true;
   }
 }
 
-//allows for forward and reverse control of the roller
-void rollerThing(){ 
+// allows for forward and reverse control of the roller
+void rollerThing()
+{
   rollerSpeed();
-  if(controller1.ButtonA.pressing()){
-    if (fastRoller == true){
+  if (controller1.ButtonA.pressing())
+  {
+    if (fastRoller == true)
+    {
       rollerControl(1);
     }
-    else if (fastRoller == false){
+    else if (fastRoller == false)
+    {
       rollerControl(.5);
     }
   }
-  else if(controller1.ButtonB.pressing()){
-    if (fastRoller == true){
+  else if (controller1.ButtonB.pressing())
+  {
+    if (fastRoller == true)
+    {
       rollerControl(-1);
     }
-    else if (fastRoller == false){
+    else if (fastRoller == false)
+    {
       rollerControl(-.5);
     }
   }
-  else{
+  else
+  {
     rollerMotor.stop();
   }
 }
 
-//prints to the brain
-void printDrive (int input, int another){
+// prints to the brain
+void printDrive(int input, int another)
+{
   Brain.Screen.clearScreen();
-  Brain.Screen.setCursor(1,1);
+  Brain.Screen.setCursor(1, 1);
   Brain.Screen.print(input);
-  Brain.Screen.setCursor(1,32);
+  Brain.Screen.setCursor(1, 32);
   Brain.Screen.print(another);
 }
 
@@ -316,27 +359,28 @@ void getLocation()
 {
   float x = GPSSensor.xPosition(mm) / 1000;
   float y = GPSSensor.yPosition(mm) / 1000;
-  float z = GPSSensor.heading();
+  float z = GPSSensor.heading(deg);
 
-  Brain.Screen.clearScreen();
-  Brain.Screen.setCursor(1,1);
-  Brain.Screen.print("X value = ");
-  Brain.Screen.print(x);
-  Brain.Screen.setCursor(2, 1);
-  Brain.Screen.print("Y value = ");
-  Brain.Screen.print(y);
-  Brain.Screen.setCursor(3, 1);
-  Brain.Screen.print("Rotation = ");
-  Brain.Screen.print(z);
+  controller1.Screen.clearScreen();
+  controller1.Screen.setCursor(1, 1);
+  controller1.Screen.print("X value = ");
+  controller1.Screen.print(x);
+  controller1.Screen.setCursor(2, 1);
+  controller1.Screen.print("Y value = ");
+  controller1.Screen.print(y);
+  controller1.Screen.setCursor(3, 1);
+  controller1.Screen.print("Rotation = ");
+  controller1.Screen.print(z);
 }
 
-void crazyIdea (int xvalue, int yvalue){
- double T = atan(yvalue/xvalue);
- int z = GPSSensor.heading();
+void crazyIdea(int xvalue, int yvalue)
+{
+  double T = atan(yvalue / xvalue);
+  int z = GPSSensor.heading();
 
- double axis3 = 100 * sin(T - z);
- double axis4 = 100 * cos(T - z);
- double axis1 = 0;
+  double axis3 = 100 * sin(T - z);
+  double axis4 = 100 * cos(T - z);
+  double axis1 = 0;
   int frontRightWheel = axis3 - axis4 - axis1;
   int frontLeftWheel = axis3 + axis4 + axis1;
   int backRightWheel = axis3 + axis4 - axis1;
@@ -348,72 +392,97 @@ void crazyIdea (int xvalue, int yvalue){
   backRightDrive.spin(vex::reverse, backRightWheel, vex::percent);
 }
 
-void expand (){
-  if(controller1.ButtonLeft.pressing()){
-    expandMotor.spin(reverse, 100, pct); 
+void expand()
+{
+  if (controller1.ButtonLeft.pressing())
+  {
+    expandMotor.spin(reverse, 100, pct);
   }
-  else{
+  else
+  {
     expandMotor.stop();
   }
 }
 
 bool whichWay = 0;
 
-void mechaniumWheels(){
+void mechaniumWheels()
+{
   int axis1 = controller1.Axis1.position();
   int axis3 = controller1.Axis3.position();
   int axis4 = controller1.Axis4.position();
-  
+
   int frontRightWheel = axis3 - axis4 - axis1;
   int frontLeftWheel = axis3 + axis4 + axis1;
   int backRightWheel = axis3 + axis4 - axis1;
   int backLeftWheel = axis3 - axis4 + axis1;
-  
-  if (controller1.ButtonUp.pressing()){
+
+  if (controller1.ButtonUp.pressing())
+  {
     whichWay = 1;
   }
-  if (controller1.ButtonDown.pressing()){
+  if (controller1.ButtonDown.pressing())
+  {
     whichWay = 0;
   }
-  if (whichWay == 0){
+  if (whichWay == 0)
+  {
     frontLeftDrive.spin(vex::forward, frontLeftWheel, vex::percent);
     backLeftDrive.spin(vex::forward, backLeftWheel, vex::percent);
     frontRightDrive.spin(vex::reverse, frontRightWheel, vex::percent);
     backRightDrive.spin(vex::reverse, backRightWheel, vex::percent);
   }
-  if (whichWay == 1){
-  frontLeftDrive.spin(vex::reverse, frontLeftWheel, vex::percent);
-  backLeftDrive.spin(vex::reverse, backLeftWheel, vex::percent);
-  frontRightDrive.spin(vex::forward, frontRightWheel, vex::percent);
-  backRightDrive.spin(vex::forward, backRightWheel, vex::percent);
+  if (whichWay == 1)
+  {
+    frontLeftDrive.spin(vex::reverse, frontLeftWheel, vex::percent);
+    backLeftDrive.spin(vex::reverse, backLeftWheel, vex::percent);
+    frontRightDrive.spin(vex::forward, frontRightWheel, vex::percent);
+    backRightDrive.spin(vex::forward, backRightWheel, vex::percent);
   }
 }
 
-void acklenNator (){
-  float x = -1 * (GPSSensor.xPosition(mm) -  1550);
-  float wheelSpeed = (100 * (x/3100));
+void wheelsSensorBot()
+{
+  int axis3 = controller1.Axis3.position();
+  int axis4 = controller1.Axis4.position();
+
+  int frontRightWheel = axis3 - axis4;
+  int frontLeftWheel = axis3 + axis4;
+  frontLeftDrive.spin(vex::reverse, frontLeftWheel, vex::percent);
+  frontRightDrive.spin(vex::reverse, frontRightWheel, vex::percent);
+}
+
+
+
+void acklenNator()
+{
+  float x = -1 * (GPSSensor.xPosition(mm) - 1550);
+  float wheelSpeed = (100 * (x / 3100));
   Brain.Screen.clearScreen();
-  Brain.Screen.setCursor(1,1);
+  Brain.Screen.setCursor(1, 1);
   Brain.Screen.print(" Distance from wall= ");
   Brain.Screen.print(x);
   Brain.Screen.print(" speed= ");
   Brain.Screen.print(wheelSpeed);
-  if (controller1.ButtonA.pressing()){
+  if (controller1.ButtonA.pressing())
+  {
     frontLeftDrive.spin(vex::forward, wheelSpeed, vex::percent);
     backLeftDrive.spin(vex::forward, wheelSpeed, vex::percent);
     frontRightDrive.spin(vex::reverse, wheelSpeed, vex::percent);
     backRightDrive.spin(vex::reverse, wheelSpeed, vex::percent);
   }
-  if (controller1.ButtonR1.pressing()){
-    crazyIdea(0,0);
+  if (controller1.ButtonR1.pressing())
+  {
+    crazyIdea(0, 0);
   }
-  else{
-   mechaniumWheels();
+  else
+  {
+    mechaniumWheels();
   }
 }
 
-
-void displayWheels (){
+void displayWheels()
+{
   int axis1 = controller1.Axis1.position();
   int axis3 = controller1.Axis3.position();
   int axis4 = controller1.Axis4.position();
@@ -424,7 +493,7 @@ void displayWheels (){
   int backLeftWheel = axis3 - axis4 + axis1;
 
   Brain.Screen.clearScreen();
-  
+
   Brain.Screen.print("Front right Wheel: ");
   Brain.Screen.print(frontRightWheel);
   Brain.Screen.print(" Front left Wheel: ");
@@ -435,118 +504,148 @@ void displayWheels (){
   Brain.Screen.print(backLeftWheel);
 }
 
-
-
-void robotTurn (int v){
+void robotTurn(int v)
+{
   frontLeftDrive.spin(vex::forward, v, vex::percent);
   backLeftDrive.spin(vex::forward, v, vex::percent);
   frontRightDrive.spin(vex::reverse, -v, vex::percent);
   backRightDrive.spin(vex::reverse, -v, vex::percent);
-}   
+}
 
-
-void robotAdvance (int v){
+void robotAdvance(int v)
+{
   frontLeftDrive.spin(vex::forward, v, vex::percent);
   backLeftDrive.spin(vex::forward, v, vex::percent);
   frontRightDrive.spin(vex::reverse, v, vex::percent);
   backRightDrive.spin(vex::reverse, v, vex::percent);
 }
 
-float numberAdjust (float deg){
-  if (deg > 360){
-    deg =  deg -  360;
+float numberAdjust(float deg)
+{
+  if (deg > 360)
+  {
+    deg = deg - 360;
   }
-  else if (deg < 0){
+  else if (deg < 0)
+  {
     deg = deg + 360;
   }
   return deg;
 }
 
-
-//x= -1.12 y= -1.27 for one of the rollers
-//right is 1 left is 0
+// x= -1.12 y= -1.27 for one of the rollers
+// right is 1 left is 0
 bool isTurningRight = 1;
 float turnSpeed = 50;
 float margin = 45;
 
-void posisioning (float target){
+long lagging;
+long difference;
+long initial;
+long newDistance;
+int n =0; //n is the number of times that the number has been normalized
+
+long gpsAdjustment(void){
+  newDistance = GPSSensor.heading() + (360 * n);
+  return newDistance;
+}
+
+void normalizing(bool turningRight){
+  initial = GPSSensor.heading();
+  difference =  initial-lagging;  //  150 - 180 = -30  |||  005 - 355 = -255
+  if (turningRight == true){
+    if (difference > 0){
+      n++;
+    }
+  }
+  else{
+    if (difference < 0){
+      n--;
+    }
+  }
+  lagging = GPSSensor.heading();
+}
+
+void posisioning(float target)
+{
   float x = GPSSensor.xPosition(mm);
   float y = GPSSensor.yPosition(mm);
-  float z = GPSSensor.heading();
-  
+  float z = gpsAdjustment();
+
   controller1.Screen.clearScreen();
-  controller1.Screen.setCursor(1,1);
+  controller1.Screen.setCursor(1, 1);
   controller1.Screen.print("Heading: ");
   controller1.Screen.print(z);
-  controller1.Screen.setCursor(2,1);
+  controller1.Screen.setCursor(2, 1);
   controller1.Screen.print("Logic: ");
-  if (z > numberAdjust(target + margin) && z < numberAdjust(target + 180)){
-    controller1.Screen.print(numberAdjust(target + margin));
+  if (z > target + margin)
+  {
+    controller1.Screen.print(target + margin);
     controller1.Screen.print(" < ");
     controller1.Screen.print(z);
-    controller1.Screen.print(" < ");
-    controller1.Screen.print(numberAdjust(target + 180));
-    controller1.Screen.setCursor(3,1);
+    controller1.Screen.setCursor(3, 1);
     controller1.Screen.print("Turning Left");
   }
-  else if (z <= numberAdjust(target + margin) && z > numberAdjust(target + 180)){
-    controller1.Screen.print(numberAdjust(target + margin));
+  else if (z <= target + margin)
+  {
+    controller1.Screen.print(target + margin);
     controller1.Screen.print(" < ");
     controller1.Screen.print(z);
-    controller1.Screen.print(" < ");
-    controller1.Screen.print(numberAdjust(target + 180));
-    controller1.Screen.setCursor(3,1);
+    controller1.Screen.setCursor(3, 1);
     controller1.Screen.print("Turning Right");
   }
 
-  Brain.Screen.setCursor(1,1);
-  Brain.Screen.clearScreen();
-  Brain.Screen.print("x = ");
-  Brain.Screen.print(x);
-  Brain.Screen.print("y = ");
-  Brain.Screen.print(y);
-  Brain.Screen.print("turn = ");
-  Brain.Screen.print(z);
+  // Brain.Screen.setCursor(1, 1);
+  // Brain.Screen.clearScreen();
+  // Brain.Screen.print("x = ");
+  // Brain.Screen.print(x);
+  // Brain.Screen.print("y = ");
+  // Brain.Screen.print(y);
+  // Brain.Screen.print("turn = ");
+  // Brain.Screen.print(z);
 
-
-  if(isTurningRight == 1){  
+  if (isTurningRight == 1)
+  {
     Brain.Screen.print("Turn Right");
     robotTurn(turnSpeed);
-    if(z > numberAdjust(target + margin) && z < numberAdjust(target + 180)){
+    if (z > target + margin)
+    {
       Brain.Screen.print("Reversing");
       isTurningRight = 0;
       turnSpeed = turnSpeed * .5;
       margin = margin * .5;
     }
   }
-  else{
+  else
+  {
     Brain.Screen.print("Turn Left");
     robotTurn(-1 * turnSpeed);
-    if(z <= numberAdjust(target - margin) && z > numberAdjust(target + 180)){
+    if (z <= target - margin)
+    {
       Brain.Screen.print("Reversing");
       isTurningRight = 1;
       turnSpeed = turnSpeed * .5;
       margin = margin * .5;
     }
   }
-  controller1.Screen.setCursor(4,1);
+  controller1.Screen.setCursor(4, 1);
   controller1.Screen.print(turnSpeed);
-
 }
 
-void screenDisplay(){
+void screenDisplay()
+{
   int x = GPSSensor.xPosition(mm);
   int y = GPSSensor.yPosition(mm);
   int Rotation = GPSSensor.heading();
 
   controller1.Screen.clearScreen();
-  controller1.Screen.setCursor(1,1);
+  controller1.Screen.setCursor(1, 1);
   controller1.Screen.print("x= ");
   controller1.Screen.print(x);
-  controller1.Screen.setCursor(2,1);
+  controller1.Screen.setCursor(2, 1);
   controller1.Screen.print("y= ");
   controller1.Screen.print(y);
-  controller1.Screen.setCursor(3,1);
+  controller1.Screen.setCursor(3, 1);
   controller1.Screen.print("Rotation= ");
   controller1.Screen.print(Rotation);
 }
@@ -555,56 +654,69 @@ bool launchControl = false;
 bool launchFast = true;
 int x = 100;
 
-void launcher (){
-  if (controller1.ButtonR1.pressing()){
+void launcher()
+{
+  if (controller1.ButtonR1.pressing())
+  {
     launchControl = true;
   }
-  if (controller1.ButtonR2.pressing()){
+  if (controller1.ButtonR2.pressing())
+  {
     launchControl = false;
   }
-  if (controller1.ButtonX.pressing()){
+  if (controller1.ButtonX.pressing())
+  {
     launchFast = false;
   }
-  if (controller1.ButtonY.pressing()){
+  if (controller1.ButtonY.pressing())
+  {
     launchFast = true;
   }
-  if (launchControl){
-    if(launchFast){ 
-      launcherR.spin(forward, x,velocityUnits::pct);
-      launcherL.spin(reverse, x,velocityUnits::pct);
+  if (launchControl)
+  {
+    if (launchFast)
+    {
+      launcherR.spin(forward, x, velocityUnits::pct);
+      launcherL.spin(reverse, x, velocityUnits::pct);
     }
-    if(!launchFast){ 
-      launcherR.spin(forward, x/2 ,velocityUnits::pct);
-      launcherL.spin(reverse, x/2 ,velocityUnits::pct);
+    if (!launchFast)
+    {
+      launcherR.spin(forward, x / 2, velocityUnits::pct);
+      launcherL.spin(reverse, x / 2, velocityUnits::pct);
     }
   }
-  if(!launchControl){
+  if (!launchControl)
+  {
     launcherR.stop();
     launcherL.stop();
   }
-  
 }
 
-void troubleShooting(){
- testMotor.spin(forward);
- controller1.Screen.clearScreen();
- controller1.Screen.setCursor(1,1);
- controller1.Screen.print(testMotor.current(pct));
+void troubleShooting()
+{
+  testMotor.spin(forward);
+  controller1.Screen.clearScreen();
+  controller1.Screen.setCursor(1, 1);
+  controller1.Screen.print(testMotor.current(pct));
 }
 
-void whatColor(){
+void whatColor()
+{
   Brain.Screen.clearScreen();
-  Brain.Screen.setCursor(1,1);
+  Brain.Screen.setCursor(1, 1);
   colorSensor.takeSnapshot(colorSensor__REDSIDE);
-  if (colorSensor.objectCount >= 1){
+  if (colorSensor.objectCount >= 1)
+  {
     Brain.Screen.print("YAYAYAYAYAYAYAYAYAYAYAYAYAYAYAY");
   }
-  else{
+  else
+  {
     Brain.Screen.print(";-;");
   }
 }
 
-void startMatch (){
+void startMatch()
+{
   allForwardc(100);
   setMotors(100);
   turnRoller(100);
@@ -622,11 +734,12 @@ void startMatch (){
   tankTurn(-450);
 }
 
-void usercontrol(void) {
+void usercontrol(void)
+{
   // User control code here, inside the loop
   Brain.Timer.reset();
-  startMatch();
-  while (1) {
+  while (1)
+  {
     // This is the main execution loop for the user control program.
     // Each time through the loop your program should update motor + servo
     // values based on feedback from the joysticks.
@@ -635,22 +748,22 @@ void usercontrol(void) {
     // update your motors, etc.
     // ........................................................................
     // conveyorStart();
-    // conveyorControl(); //intake
-    launcher(); //output launcher
-    mechaniumWheels(); //drivecontrol
-    expand(); //Expander
-    troubleShooting();
+    // conveyorControl(); // intake
+    // launcher();        // output launcher
+    // mechaniumWheels(); // drivecontrol
+    // expand();          // Expander
+    // troubleShooting();
     pusher();
+    // rollerThing();
+
+    wheelsSensorBot();
 
 
-    rollerThing();
-    //roller
-    // getLocation();
-    // //posisioning(180);
-    // //acklenNator(); //drivercontrol
-    // //screenDisplay();
-
-
+    // roller
+    getLocation();
+    //  //posisioning(180);
+    //  //acklenNator(); //drivercontrol
+    //  //screenDisplay();
 
     // whatColor();
 
@@ -659,8 +772,8 @@ void usercontrol(void) {
   }
 }
 
-
-int main() {
+int main()
+{
   // Set up callbacks for autonomous and driver control periods.
   Competition.autonomous(autonomous);
   Competition.drivercontrol(usercontrol);
@@ -669,7 +782,8 @@ int main() {
   pre_auton();
 
   // Prevent main from exiting with an infinite loop.
-  while (true) {
+  while (true)
+  {
     wait(100, msec);
   }
 }

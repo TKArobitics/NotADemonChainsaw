@@ -29,7 +29,7 @@ motor launcherL(PORT15); //launcher left motor
 
 motor expandMotor(PORT13); //expansion
 
-gps GPSSensor = gps(PORT21, 0.00, -101.60, mm, 180);
+gps GPSSensor = gps(PORT20, 0.00, -101.60, mm, 180);
 signature colorSensor__REDSIDE = signature (1, 3841, 6401, 5122, -449, 1727, 638, 2.5, 0);
 signature colorSensor__BLUESIDE = signature (2, -3355, -2591, -2972, 11569, 13569, 12570, 5.5, 0);
 vision colorSensor = vision (PORT14, 50, colorSensor__REDSIDE, colorSensor__BLUESIDE);
