@@ -717,13 +717,36 @@ void whatColor()
   }
 }
 
+int flyWheelSpeed = 50;
+
+int flyWheelAdjustment(){
+  if(controller1.ButtonUp.pressing() && flyWheelSpeed <= 100){
+    flyWheelSpeed = flyWheelSpeed + 10;
+  }
+  else if(controller1.ButtonDown.pressing() && flyWheelSpeed >= 100){
+    flyWheelSpeed = flyWheelSpeed - 10;
+  }
+  controller1.Screen.clearScreen();
+  controller1.Screen.setCursor(1,1);
+  controller1.Screen.print(flyWheelSpeed);
+  return flyWheelSpeed;
+}
+
+bool flyWheelOn = false;
+
 void flyWheelControl (){
   if (controller1.ButtonL1.pressing())
   {
-    flyWheel.spin(reverse, 80, pct);
+    flyWheelOn = true;
   }
   else if(controller1.ButtonL2.pressing())
   {
+    flyWheelOn = false;
+  }
+  if(flyWheelOn == true){
+    flyWheel.spin(forward, flyWheelAdjustment(), pct);
+  }
+  else{
     flyWheel.stop();
   }
 }
@@ -766,16 +789,16 @@ void usercontrol(void)
     // mechaniumWheels(); // drivecontrol
     // expand();          // Expander
     // troubleShooting();
+    flyWheelAdjustment();
     pusher();
     flyWheelControl();
     // rollerThing();
 
     wheelsSensorBot();
 
-
     // roller
-    getLocation();
-    posisioning(0);
+    // getLocation();
+    // posisioning(0);
     //  //acklenNator(); //drivercontrol
     //  //screenDisplay();
 
