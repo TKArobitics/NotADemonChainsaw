@@ -7,6 +7,8 @@ extern brain Brain;
 
 extern controller controller1;
 
+extern motor flyWheel;
+
 extern motor frontRightDrive;
 extern motor frontLeftDrive;
 extern motor backLeftDrive;
