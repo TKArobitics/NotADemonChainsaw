@@ -273,7 +273,7 @@ void pusher()
 {
   if (controller1.ButtonR1.pressing())
   {
-    pusherMotor.spin(reverse, 80, pct);
+    pusherMotor.spin(forward, 80, pct);
   }
   else
   {
@@ -608,6 +608,7 @@ void posisioning(float target)
   {
     Brain.Screen.print("Turn Right");
     robotTurn(turnSpeed);
+    normalizing(true);
     if (z > target + margin)
     {
       Brain.Screen.print("Reversing");
@@ -620,6 +621,7 @@ void posisioning(float target)
   {
     Brain.Screen.print("Turn Left");
     robotTurn(-1 * turnSpeed);
+    normalizing(false);
     if (z <= target - margin)
     {
       Brain.Screen.print("Reversing");
@@ -715,6 +717,17 @@ void whatColor()
   }
 }
 
+void flyWheelControl (){
+  if (controller1.ButtonL1.pressing())
+  {
+    flyWheel.spin(reverse, 80, pct);
+  }
+  else if(controller1.ButtonL2.pressing())
+  {
+    flyWheel.stop();
+  }
+}
+
 void startMatch()
 {
   allForwardc(100);
@@ -754,6 +767,7 @@ void usercontrol(void)
     // expand();          // Expander
     // troubleShooting();
     pusher();
+    flyWheelControl();
     // rollerThing();
 
     wheelsSensorBot();
@@ -761,7 +775,7 @@ void usercontrol(void)
 
     // roller
     getLocation();
-    //  //posisioning(180);
+    posisioning(0);
     //  //acklenNator(); //drivercontrol
     //  //screenDisplay();
 
