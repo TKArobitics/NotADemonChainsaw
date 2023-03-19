@@ -717,6 +717,20 @@ void whatColor()
   }
 }
 
+
+void autoRoller ()
+{
+  colorSensor.takeSnapshot(colorSensor__REDSIDE);
+  if (colorSensor.objectCount > 0)
+    {
+      rollerMotor.spin(forward, 20, pct);
+    }
+    else
+    {
+      rollerMotor.stop();
+    }
+  }
+
 int flyWheelSpeed = 50;
 
 int flyWheelAdjustment(){
