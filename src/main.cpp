@@ -734,10 +734,10 @@ void autoRoller ()
 int flyWheelSpeed = 50;
 
 int flyWheelAdjustment(){
-  if(controller1.ButtonUp.pressing() && flyWheelSpeed <= 100){
+  if(controller1.ButtonUp.pressing() && flyWheelSpeed < 100){
     flyWheelSpeed = flyWheelSpeed + 10;
   }
-  else if(controller1.ButtonDown.pressing() && flyWheelSpeed >= 100){
+  else if(controller1.ButtonDown.pressing() && flyWheelSpeed > 0){
     flyWheelSpeed = flyWheelSpeed - 10;
   }
   controller1.Screen.clearScreen();
@@ -808,7 +808,7 @@ void usercontrol(void)
     flyWheelControl();
     // rollerThing();
 
-    wheelsSensorBot();
+    // wheelsSensorBot();
 
     // roller
     // getLocation();

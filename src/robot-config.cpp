@@ -21,7 +21,6 @@ motor testMotor(PORT2);
 motor rollerMotor(PORT10); //roller motor?
 
 motor conveyorMotor(PORT10); //conveyor motor (also intake)
-
 motor flyWheel(PORT12);
 
 motor pusherMotor(PORT11);
