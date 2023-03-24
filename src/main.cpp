@@ -723,7 +723,7 @@ int flyWheelAdjustment(){
   if(controller1.ButtonUp.pressing() && flyWheelSpeed <= 100){
     flyWheelSpeed = flyWheelSpeed + 10;
   }
-  else if(controller1.ButtonDown.pressing() && flyWheelSpeed >= 100){
+  else if(controller1.ButtonDown.pressing() && flyWheelSpeed >= 0){
     flyWheelSpeed = flyWheelSpeed - 10;
   }
   controller1.Screen.clearScreen();
@@ -744,7 +744,7 @@ void flyWheelControl (){
     flyWheelOn = false;
   }
   if(flyWheelOn == true){
-    flyWheel.spin(forward, flyWheelAdjustment(), pct);
+    flyWheel.spin(reverse, flyWheelAdjustment(), pct);
   }
   else{
     flyWheel.stop();
