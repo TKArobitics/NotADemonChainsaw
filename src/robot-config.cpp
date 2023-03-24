@@ -22,9 +22,9 @@ motor rollerMotor(PORT10); //roller motor?
 
 motor conveyorMotor(PORT10); //conveyor motor (also intake)
 
-motor flyWheel(PORT12);
+motor flyWheel(PORT11);
 
-motor pusherMotor(PORT11);
+motor pusherMotor(PORT12);
 
 motor launcherR(PORT16); //launcher right motor
 motor launcherL(PORT15); //launcher left motor
