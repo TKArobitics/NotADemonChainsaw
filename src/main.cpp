@@ -14,6 +14,7 @@
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
+#include "blueShort.h"
 
 using namespace vex;
 
@@ -53,12 +54,30 @@ void turnRoller(int amount)
   rollerMotor.spinFor(reverse, amount, degrees, false);
 }
 
+void startLauncher(int dist){
+  flyWheel.setVelocity(dist, pct);
+  flyWheel.spin(forward);
+  wait(3, sec);
+}
+
+void autoConveyor(int dist){
+  conveyorMotor.spinFor(forward, dist, deg);
+}
+
 void allForward(int dist)
 {
   frontLeftDrive.spinFor(forward, dist, degrees, false);
   frontRightDrive.spinFor(reverse, dist, degrees, false);
   backRightDrive.spinFor(reverse, dist, degrees, false);
   backLeftDrive.spinFor(forward, dist, degrees);
+}
+
+void mechTranslate(int dist)
+{
+  frontLeftDrive.spinFor(forward, dist, degrees, false);
+  frontRightDrive.spinFor(forward, dist, degrees, false);
+  backRightDrive.spinFor(reverse, dist, degrees, false);
+  backLeftDrive.spinFor(reverse, dist, degrees);
 }
 
 void allForwardc(int dist)
@@ -210,7 +229,14 @@ void autonomous(void)
 {
   // autoMechan(10000);
   // shortSide();
-  skills();
+  // skills();
+  blueShort();
+}
+
+void autoTest(){
+  if(Brain.Screen.pressing()){
+    autonomous();
+  }
 }
 
 /*---------------------------------------------------------------------------*/
@@ -807,6 +833,8 @@ void usercontrol(void)
     pusher();
     flyWheelControl();
     // rollerThing();
+
+    autoTest();
 
     // wheelsSensorBot();
 
