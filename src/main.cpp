@@ -717,13 +717,27 @@ void whatColor()
   }
 }
 
+
+void autoRoller ()
+{
+  colorSensor.takeSnapshot(colorSensor__REDSIDE);
+  if (colorSensor.objectCount > 0)
+    {
+      rollerMotor.spin(forward, 20, pct);
+    }
+    else
+    {
+      rollerMotor.stop();
+    }
+  }
+
 int flyWheelSpeed = 50;
 
 int flyWheelAdjustment(){
-  if(controller1.ButtonUp.pressing() && flyWheelSpeed <= 100){
+  if(controller1.ButtonUp.pressing() && flyWheelSpeed < 100){
     flyWheelSpeed = flyWheelSpeed + 10;
   }
-  else if(controller1.ButtonDown.pressing() && flyWheelSpeed >= 0){
+  else if(controller1.ButtonDown.pressing() && flyWheelSpeed > 0){
     flyWheelSpeed = flyWheelSpeed - 10;
   }
   controller1.Screen.clearScreen();
@@ -794,7 +808,7 @@ void usercontrol(void)
     flyWheelControl();
     // rollerThing();
 
-    wheelsSensorBot();
+    // wheelsSensorBot();
 
     // roller
     // getLocation();
