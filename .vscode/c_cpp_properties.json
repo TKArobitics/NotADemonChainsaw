@@ -20,7 +20,8 @@
             "name": "Win32",
             "includePath": [
                 "${vex_sdkIncludes}",
-                "${workspaceFolder}/include"
+                "${workspaceFolder}/include",
+                "C:/Users/joshu/AppData/Roaming/Code/User/globalStorage/vexrobotics.vexcode/sdk/cpp/V5/V5_20220726_10_00_00/vexv5/gcc/include/c++/4.9.3/arm-none-eabi"
             ],
             "compilerPath": "${vex_compilerPath}",
             "cStandard": "gnu99",
@@ -47,6 +48,22 @@
             "cStandard": "gnu99",
             "cppStandard": "gnu++11",
             "intelliSenseMode": "linux-clang-x86"
+        },
+        {
+            "name": "hi",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "windowsSdkVersion": "10.0.22000.0",
+            "compilerPath": "cl.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-msvc-x64"
         }
     ],
     "version": 4

@@ -1,9 +1,17 @@
+#ifndef vex.h
+
+#include "vex.h"
+#endif
 
 #include "main.h"
+
+using namespace vex;
 
 // A global instance of competition
 
 void getOtherRoller(){
+  Brain.Screen.print("Running getOtherRoller.\n");
+  
   allForwardc(20);
   mechTranslate(-90);
   allForwardc(-30);

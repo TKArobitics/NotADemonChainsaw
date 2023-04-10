@@ -15,7 +15,8 @@
 
 #include "vex.h"
 #include "blueShort.h"
-
+#include "blueLong.h"
+#include "getOtherRoller.h"
 using namespace vex;
 
 // A global instance of competition
@@ -243,10 +244,16 @@ void driveForward(int duration)
 
 void autonomous(void)
 {
+  Brain.Screen.print("running");
+
   // autoMechan(10000);
   // shortSide();
   // skills();
-  blueShort();
+  // blueShort();
+  // blueLong();
+  getOtherRoller();
+
+  Brain.Screen.print("Finished Autonomous");
 }
 
 void autoTest(){
