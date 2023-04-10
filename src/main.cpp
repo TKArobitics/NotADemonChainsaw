@@ -273,7 +273,7 @@ void pusher()
 {
   if (controller1.ButtonR1.pressing())
   {
-    pusherMotor.spin(reverse, 80, pct);
+    pusherMotor.spin(forward, 80, pct);
   }
   else
   {
