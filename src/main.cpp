@@ -60,6 +60,10 @@ void startLauncher(int dist){
   wait(3, sec);
 }
 
+void autoPusher(int time){
+  pusherMotor.spinFor(reverse, time, sec);
+}
+
 void autoConveyor(int dist){
   conveyorMotor.spinFor(forward, dist, deg);
 }
@@ -86,6 +90,18 @@ void allForwardc(int dist)
   frontRightDrive.spinFor(reverse, dist, degrees, false);
   backRightDrive.spinFor(reverse, dist, degrees, false);
   backLeftDrive.spinFor(forward, dist, degrees, false);
+}
+
+void allExtraStop(){
+  testMotor.stop();
+  rollerMotor.stop();
+  conveyorMotor.stop();
+  flyWheel.stop();
+  pusherMotor.stop();
+  launcherR.stop();
+  launcherL.stop();
+  expandMotor.stop();
+
 }
 
 void allStart()
@@ -291,6 +307,7 @@ void conveyorControl()
     else
     {
       conveyorMotor.stop();
+
     }
   }
 }
@@ -299,7 +316,7 @@ void pusher()
 {
   if (controller1.ButtonR1.pressing())
   {
-    pusherMotor.spin(forward, 80, pct);
+    pusherMotor.spin(reverse, 80, pct);
   }
   else
   {

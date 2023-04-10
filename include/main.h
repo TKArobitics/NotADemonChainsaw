@@ -1,4 +1,5 @@
 void startLauncher(int);
+void autoPusher(int);
 void autoConveyor(int);
 void tankTurn(int);
 void mechTranslate(int);
