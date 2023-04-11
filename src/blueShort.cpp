@@ -11,11 +11,11 @@ using namespace vex;
 
 void blueShort(){
   Brain.Screen.print("Running blueShort.\n");
-  startLauncher(80);
-  autoConveyor(25);
-  tankTurn(90);
-  mechTranslate(-90);
-  setMotors(10);
-  allForwardc(80);
-  turnRoller(90);
+  startLauncher(800);
+  autoConveyor(250);
+  tankTurn(900);
+  mechTranslate(-900);
+  setMotors(100);
+  allForwardc(800);
+  turnRoller(900);
 }
