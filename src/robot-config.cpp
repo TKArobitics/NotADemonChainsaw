@@ -28,12 +28,12 @@ motor pusherMotor(PORT13);
 motor launcherR(PORT16); //launcher right motor
 motor launcherL(PORT15); //launcher left motor
 
-motor expandMotor(PORT13); //expansion
+motor expandMotor(PORT14); //expansion
 
-gps GPSSensor = gps(PORT20, 0.00, -101.60, mm, 180);
-signature colorSensor__REDSIDE = signature (1, 3841, 6401, 5122, -449, 1727, 638, 2.5, 0);
-signature colorSensor__BLUESIDE = signature (2, -3355, -2591, -2972, 11569, 13569, 12570, 5.5, 0);
-vision colorSensor = vision (PORT14, 50, colorSensor__REDSIDE, colorSensor__BLUESIDE);
+gps GPSSensor = gps(PORT7, 0.00, -101.60, mm, 180);
+signature colorSensor__REDSIDE = signature (1, 6781, 8753, 7768, -837, -219, -528, 2.100, 0);
+signature colorSensor__BLUESIDE = signature (2, -2849, -2239, -2544, 10593, 12529, 11562, 2.500, 0);
+vision colorSensor = vision (PORT11, 50, colorSensor__REDSIDE, colorSensor__BLUESIDE);
 
 // VEXcode generated functions
 

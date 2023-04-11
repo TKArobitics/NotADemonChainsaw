@@ -249,9 +249,9 @@ void autonomous(void)
   // autoMechan(10000);
   // shortSide();
   // skills();
-  // blueShort();
+  blueShort();
   // blueLong();
-  getOtherRoller();
+  // getOtherRoller();
 
   Brain.Screen.print("Finished Autonomous");
 }
@@ -767,6 +767,20 @@ void whatColor()
   }
 }
 
+void whatColorBlue()
+{
+  Brain.Screen.clearScreen();
+  Brain.Screen.setCursor(1, 1);
+  colorSensor.takeSnapshot(colorSensor__BLUESIDE);
+  if (colorSensor.objectCount >= 1)
+  {
+    Brain.Screen.print("YAYAYAYAYAYAYAYAYAYAYAYAYAYAYAY");
+  }
+  else
+  {
+    Brain.Screen.print(";-;");
+  }
+}
 
 void autoRoller ()
 {
@@ -850,15 +864,15 @@ void usercontrol(void)
     // conveyorStart();
     // conveyorControl(); // intake
     // launcher();        // output launcher
-    // mechaniumWheels(); // drivecontrol
+    mechaniumWheels(); // drivecontrol
     // expand();          // Expander
-    // troubleShooting();
-    flyWheelAdjustment();
-    pusher();
-    flyWheelControl();
+    troubleShooting();
+    // flyWheelAdjustment();
+    // pusher();
+    // flyWheelControl();
     // rollerThing();
 
-    autoTest();
+    // autoTest();
 
     // wheelsSensorBot();
 
@@ -867,8 +881,8 @@ void usercontrol(void)
     // posisioning(0);
     //  //acklenNator(); //drivercontrol
     //  //screenDisplay();
-
-    // whatColor();
+    autoRoller();
+    whatColorBlue();
 
     wait(20, msec); // Sleep the task for a short amount of time to
                     // prevent wasted resources.
