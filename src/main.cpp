@@ -323,7 +323,7 @@ void pusher()
 {
   if (controller1.ButtonR1.pressing())
   {
-    pusherMotor.spin(reverse, 80, pct);
+    pusherMotor.spin(forward, 80, pct);
   }
   else
   {
@@ -341,11 +341,11 @@ bool fastRoller = true;
 
 void rollerSpeed()
 {
-  if (controller1.ButtonL1.pressing())
+  if (controller1.ButtonX.pressing())
   {
     fastRoller = false;
   }
-  else if (controller1.ButtonL2.pressing())
+  else if (controller1.ButtonY.pressing())
   {
     fastRoller = true;
   }
@@ -456,7 +456,8 @@ void expand()
 
 bool whichWay = 0;
 
-void mechaniumWheels()
+void 
+mechaniumWheels()
 {
   int axis1 = controller1.Axis1.position();
   int axis3 = controller1.Axis3.position();
@@ -797,18 +798,18 @@ void autoRoller ()
 
 int flyWheelSpeed = 50;
 
-int flyWheelAdjustment(){
-  if(controller1.ButtonUp.pressing() && flyWheelSpeed < 100){
-    flyWheelSpeed = flyWheelSpeed + 10;
-  }
-  else if(controller1.ButtonDown.pressing() && flyWheelSpeed > 0){
-    flyWheelSpeed = flyWheelSpeed - 10;
-  }
-  controller1.Screen.clearScreen();
-  controller1.Screen.setCursor(1,1);
-  controller1.Screen.print(flyWheelSpeed);
-  return flyWheelSpeed;
-}
+// int flyWheelAdjustment(){
+//   if(controller1.ButtonUp.pressing() && flyWheelSpeed < 100){
+//     flyWheelSpeed = flyWheelSpeed + 10;
+//   }
+//   else if(controller1.ButtonDown.pressing() && flyWheelSpeed > 0){
+//     flyWheelSpeed = flyWheelSpeed - 10;
+//   }
+//   controller1.Screen.clearScreen();
+//   controller1.Screen.setCursor(1,1);
+//   controller1.Screen.print(flyWheelSpeed);
+//   return flyWheelSpeed;
+// }
 
 bool flyWheelOn = false;
 
@@ -822,7 +823,7 @@ void flyWheelControl (){
     flyWheelOn = false;
   }
   if(flyWheelOn == true){
-    flyWheel.spin(reverse, flyWheelAdjustment(), pct);
+    flyWheel.spin(reverse, 50, pct);
   }
   else{
     flyWheel.stop();
