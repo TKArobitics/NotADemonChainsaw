@@ -7,3 +7,4 @@ void setMotors(int);
 void allForwardc(int);
 void allForward(int);
 void turnRoller(int);
+void rightSideOnly(int);

@@ -50,6 +50,11 @@ void setMotors(int prct)
   backRightDrive.setVelocity(prct, pct);
 }
 
+void rightSideOnly(int dist){
+  frontRightDrive.spinFor(reverse, dist, deg, false);
+  backRightDrive.spinFor(reverse, dist, deg);
+}
+
 void turnRoller(int amount)
 {
   rollerMotor.spinFor(reverse, amount, degrees, false);
