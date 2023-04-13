@@ -281,11 +281,11 @@ int conveyor = 0;
 
 void conveyorStart()
 {
-  if (controller1.ButtonL1.pressing())
+  if (controller1.ButtonR1.pressing())
   {
     conveyor = 1;
   }
-  if (controller1.ButtonL2.pressing())
+  if (controller1.ButtonR2.pressing())
   {
     conveyor = 0;
   }
@@ -356,6 +356,20 @@ void rollerSpeed()
   }
 }
 
+void autoRoller ()
+{
+  colorSensor.takeSnapshot(colorSensor__REDSIDE);
+  if (colorSensor.objectCount > 0)
+    {
+      rollerMotor.spin(forward, 20, pct);
+    }
+    else
+    {
+      rollerMotor.stop();
+    }
+  }
+
+
 // allows for forward and reverse control of the roller
 void rollerThing()
 {
@@ -384,7 +398,7 @@ void rollerThing()
   }
   else
   {
-    rollerMotor.stop();
+    autoRoller();
   }
 }
 
@@ -461,8 +475,7 @@ void expand()
 
 bool whichWay = 0;
 
-void 
-mechaniumWheels()
+void mechaniumWheels()
 {
   int axis1 = controller1.Axis1.position();
   int axis3 = controller1.Axis3.position();
@@ -490,10 +503,10 @@ mechaniumWheels()
   }
   if (whichWay == 1)
   {
-    frontLeftDrive.spin(vex::reverse, frontLeftWheel, vex::percent);
-    backLeftDrive.spin(vex::reverse, backLeftWheel, vex::percent);
-    frontRightDrive.spin(vex::forward, frontRightWheel, vex::percent);
-    backRightDrive.spin(vex::forward, backRightWheel, vex::percent);
+    frontLeftDrive.spin(vex::forward, backRightWheel, vex::percent);
+    backLeftDrive.spin(vex::forward, frontRightWheel, vex::percent);
+    frontRightDrive.spin(vex::reverse, backLeftWheel, vex::percent);
+    backRightDrive.spin(vex::reverse, frontLeftWheel, vex::percent);
   }
 }
 
@@ -788,18 +801,6 @@ void whatColorBlue()
   }
 }
 
-void autoRoller ()
-{
-  colorSensor.takeSnapshot(colorSensor__REDSIDE);
-  if (colorSensor.objectCount > 0)
-    {
-      rollerMotor.spin(forward, 20, pct);
-    }
-    else
-    {
-      rollerMotor.stop();
-    }
-  }
 
 int flyWheelSpeed = 50;
 
@@ -828,7 +829,7 @@ void flyWheelControl (){
     flyWheelOn = false;
   }
   if(flyWheelOn == true){
-    flyWheel.spin(reverse, 50, pct);
+    flyWheel.spin(reverse, 48, pct);
   }
   else{
     flyWheel.stop();
@@ -867,22 +868,22 @@ void usercontrol(void)
     // Insert user code here. This is where you use the joystick values to
     // update your motors, etc.
     // ........................................................................
-    // conveyorStart();
-    // conveyorControl(); // intake
-    // launcher();        // output launcher
+    conveyorStart();
+    conveyorControl(); // intake
+    launcher();        // output launcher
     mechaniumWheels(); // drivecontrol
     // expand();          // Expander
     troubleShooting();
     // flyWheelAdjustment();
     // pusher();
-    // flyWheelControl();
-    // rollerThing();
+    flyWheelControl();
+    rollerThing();
 
     // autoTest();
 
     // wheelsSensorBot();
 
-    // roller
+  
     // getLocation();
     // posisioning(0);
     //  //acklenNator(); //drivercontrol

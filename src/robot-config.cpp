@@ -20,10 +20,10 @@ motor testMotor(PORT2);
 
 motor rollerMotor(PORT10); //roller motor?
 
-motor conveyorMotor(PORT10); //conveyor motor (also intake)
-motor flyWheel(PORT11);
+motor conveyorMotor(PORT13); //conveyor motor (also intake)
+motor flyWheel(PORT3);
 
-motor pusherMotor(PORT13);
+motor pusherMotor(PORT12);
 
 motor launcherR(PORT16); //launcher right motor
 motor launcherL(PORT15); //launcher left motor
