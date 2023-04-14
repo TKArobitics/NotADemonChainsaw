@@ -60,6 +60,12 @@ void turnRoller(int amount)
   rollerMotor.spinFor(reverse, amount, degrees, false);
 }
 
+void turnRollerTrue(int amount)
+{
+  rollerMotor.spinFor(reverse, amount, degrees);
+}
+
+
 void startLauncher(int dist){
   flyWheel.setVelocity(dist, pct);
   flyWheel.spin(forward);
@@ -70,9 +76,18 @@ void autoPusher(int time){
   pusherMotor.spinFor(reverse, time, sec);
 }
 
-void autoConveyor(int dist){
-  conveyorMotor.spinFor(forward, dist, deg);
+void autoConveyor(){
+  conveyorMotor.spin(forward);
 }
+
+void conveyorStop(){
+  conveyorMotor.stop();
+}
+
+void flyWheelStop(){
+  flyWheel.stop();
+}
+
 
 void allForward(int dist)
 {
@@ -108,6 +123,11 @@ void allExtraStop(){
   launcherL.stop();
   expandMotor.stop();
 
+}
+
+
+void spinUp(){
+  flyWheel.spin(reverse);
 }
 
 void allStart()
@@ -254,9 +274,10 @@ void autonomous(void)
   // autoMechan(10000);
   // shortSide();
   // skills();
-  blueShort();
+  // blueShort();
   // blueLong();
   // getOtherRoller();
+  skillsDisksFirst();
 
   Brain.Screen.print("Finished Autonomous");
 }
@@ -306,21 +327,9 @@ void conveyorControl()
   {
     conveyorMotor.spin(vex::reverse, 100, velocityUnits::pct);
   }
-  else if (conveyor == 0)
+  else 
   {
-    if (controller1.ButtonA.pressing())
-    {
-      conveyorMotor.spin(vex::forward, 50, pct);
-    }
-    else if (controller1.ButtonB.pressing())
-    {
-      conveyorMotor.spin(vex::reverse, 50, pct);
-    }
-    else
-    {
-      conveyorMotor.stop();
-
-    }
+   conveyorMotor.stop();
   }
 }
 
@@ -358,7 +367,7 @@ void rollerSpeed()
 
 void autoRoller ()
 {
-  colorSensor.takeSnapshot(colorSensor__REDSIDE);
+  colorSensor.takeSnapshot(colorSensor__BLUESIDE);
   if (colorSensor.objectCount > 0)
     {
       rollerMotor.spin(forward, 20, pct);
@@ -396,8 +405,7 @@ void rollerThing()
       rollerControl(-.5);
     }
   }
-  else
-  {
+  else{
     autoRoller();
   }
 }
@@ -829,7 +837,7 @@ void flyWheelControl (){
     flyWheelOn = false;
   }
   if(flyWheelOn == true){
-    flyWheel.spin(reverse, 48, pct);
+    flyWheel.spin(reverse, 45, pct);
   }
   else{
     flyWheel.stop();
@@ -872,7 +880,7 @@ void usercontrol(void)
     conveyorControl(); // intake
     launcher();        // output launcher
     mechaniumWheels(); // drivecontrol
-    // expand();          // Expander
+    expand();          // Expander
     troubleShooting();
     // flyWheelAdjustment();
     // pusher();
@@ -888,7 +896,7 @@ void usercontrol(void)
     // posisioning(0);
     //  //acklenNator(); //drivercontrol
     //  //screenDisplay();
-    autoRoller();
+    // autoRoller();
     whatColor();
 
     wait(20, msec); // Sleep the task for a short amount of time to
