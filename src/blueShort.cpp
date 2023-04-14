@@ -76,6 +76,69 @@ void skillsDisksFirst(){ // please comment on what each line does
   flyWheelStop(); // stops the flywheel
   tankTurn(300); // turns the motors 300 degrees to the right
   expandSkill(); // triggers the expansion motor (DOES NOT TURN OFF)
-  wait(5, sec);
-  expandMotor.stop();
+  wait(5, sec); // waits for expansion motor to pull pin
+  expandStop(); // stops the expansion motor
 } 
+
+void skillsRollersFirst(){
+  //this section moves to the right turns the near roller
+  setMotors(30);
+  allForward(100);
+  mechTranslate(600);
+  allForwardc(-100);
+  turnRoller(180);
+  allForward(100);
+  //drive towards and turns next roller
+  setMotors(50);
+  tankTurn(-45); // need to fine tune degrees
+  mechTranslate(600);
+  tankTurn(45);
+  mechTranslate(100);
+  allForwardc(100);
+  turnRoller(180);
+  allForward(-100);
+  //moves towards match-loader (MUST FINE TUNE)
+  allForward(-1000);
+  tankTurn(180);
+  mechTranslate(-800);
+  //shoots disks from side-loader
+  spinUp();
+  wait(5, sec);
+  autoConveyor();
+  wait(15, sec);
+  conveyorStop();
+  flyWheelStop();
+  //moves towards far side match-loader
+  mechTranslate(200);
+  tankTurn(90);
+  allForward(4000); // drives roughly across field (not accounting for disks in the way)
+  tankTurn(90);
+  mechTranslate(-200);
+  //shoots disks from side loader
+  spinUp();
+  wait(5, sec);
+  autoConveyor();
+  wait(15, sec);
+  conveyorStop();
+  flyWheelStop();
+  //moves towards roller
+  mechTranslate(200);
+  allForward(-1000);
+  tankTurn(-135);
+  allForward(100);
+  //turns both other rollers
+  allForwardc(100);
+  turnRoller(180);
+  allForward(-100);
+  mechTranslate(-400);
+  allForwardc(100);
+  turnRoller(180);
+  allForward(-100);
+  // expansion
+  tankTurn(180);
+  mechTranslate(-50);
+  expandSkill();
+  wait(5, sec);
+  expandStop();
+
+}

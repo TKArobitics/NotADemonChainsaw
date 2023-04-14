@@ -14,3 +14,4 @@ void autoConveyor();
 void conveyorStop();
 void flyWheelStop();
 void expandSkill();
+void expandStop();
