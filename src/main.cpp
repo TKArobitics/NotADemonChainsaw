@@ -84,6 +84,10 @@ void conveyorStop(){
   conveyorMotor.stop();
 }
 
+void expandStop(){
+  expandMotor.stop();
+}
+
 void flyWheelStop(){
   flyWheel.stop();
 }
@@ -122,9 +126,7 @@ void allExtraStop(){
   launcherR.stop();
   launcherL.stop();
   expandMotor.stop();
-
 }
-
 
 void spinUp(){
   flyWheel.spin(reverse);
@@ -277,6 +279,7 @@ void autonomous(void)
   // blueShort();
   // blueLong();
   // getOtherRoller();
+  // autonomousSkills();
   skillsDisksFirst();
 
   Brain.Screen.print("Finished Autonomous");
