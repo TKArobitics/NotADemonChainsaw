@@ -31,7 +31,6 @@ extern gps GPSSensor;
 extern vision colorSensor;
 extern vision::signature colorSensor__REDSIDE;
 extern vision::signature colorSensor__BLUESIDE;
-extern limit diskCounter;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.

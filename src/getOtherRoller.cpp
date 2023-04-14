@@ -9,7 +9,7 @@ using namespace vex;
 
 // A global instance of competition
 
-void getOtherRoller(){
+void getOtherRoller(){ // please comment on what each line does
   Brain.Screen.print("Running getOtherRoller.\n");
   
   allForwardc(20);
