@@ -280,7 +280,8 @@ void autonomous(void)
   // blueLong();
   // getOtherRoller();
   // autonomousSkills();
-  skillsDisksFirst();
+  // skillsDisksFirst();
+  skillsRollersFirst();
 
   Brain.Screen.print("Finished Autonomous");
 }
@@ -476,7 +477,11 @@ void expand()
 {
   if (controller1.ButtonLeft.pressing())
   {
-    expandMotor.spin(reverse, 100, pct);
+    expandMotor.spin(reverse, 50, pct);
+  }
+  if (controller1.ButtonDown.pressing())
+  {
+    expandMotor.spin(forward, 50, pct);
   }
   else
   {

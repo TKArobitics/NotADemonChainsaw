@@ -24,14 +24,14 @@ void blueShort(){ // please comment on what each line does
   Brain.Screen.print("Running blueShort.\n");
   // startLauncher(80);
   // autoConveyor(25);
-  setMotors(10);
-  allForward(50);
-  setMotors(50);
-  mechTranslate(750);
-  tankTurn(-400);
-  mechTranslate(375);
-  allForward(-250);
-  rightSideOnly(-350); 
+  setMotors(10); // sets motor speed to 10%
+  allForward(50); // rotates all motors 50 degrees
+  setMotors(50); // sets motor speed to 50%
+  mechTranslate(750); // translationally drives the robot to the right by 750(units)
+  tankTurn(-400); // turns the wheels -400 degrees
+  mechTranslate(375); // translationally drives the robot to the right by 375(units)
+  allForward(-250); // rotates all motors -250 degress
+  rightSideOnly(-350);  // 
   setMotors(5);
   allForwardc(-80);
   turnRoller(-600);
@@ -82,6 +82,7 @@ void skillsDisksFirst(){ // please comment on what each line does
 
 void skillsRollersFirst(){
   //this section moves to the right turns the near roller
+  Brain.Screen.clearScreen("Moving towards near roller");
   setMotors(30);
   allForward(100);
   mechTranslate(600);
@@ -89,6 +90,7 @@ void skillsRollersFirst(){
   turnRoller(180);
   allForward(100);
   //drive towards and turns next roller
+  Brain.Screen.clearScreen("Moving towards near roller");  
   setMotors(50);
   tankTurn(-45); // need to fine tune degrees
   mechTranslate(600);
