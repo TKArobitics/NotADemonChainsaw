@@ -269,6 +269,12 @@ void driveForward(int duration)
   backRightDrive.spin(reverse);
 }
 
+// 1000 dist = 24.5 inches
+// 360 dist = 9.25 inches
+void testDriveDist(int dist){ 
+  allForward(dist);
+}
+
 void autonomous(void)
 {
   Brain.Screen.print("running");
@@ -281,7 +287,8 @@ void autonomous(void)
   // getOtherRoller();
   // autonomousSkills();
   // skillsDisksFirst();
-  skillsRollersFirst();
+   skillsRollersFirst();
+  // testDriveDist(360);
 
   Brain.Screen.print("Finished Autonomous");
 }
@@ -313,10 +320,6 @@ void conveyorStart()
   if (controller1.ButtonR2.pressing())
   {
     conveyor = 0;
-  }
-  if (controller1.ButtonRight.pressing())
-  {
-    conveyor = -1;
   }
 }
 

@@ -80,22 +80,25 @@ void skillsDisksFirst(){ // please comment on what each line does
   expandStop(); // stops the expansion motor
 } 
 
-void skillsRollersFirst(){
+// 1000 dist = 24.5 inches
+// 360 dist = 9.25 inches
+// 100 dist = 2.45 inches
+// 40.8 dist = 1 inch
+void skillsRollersFirst(){ 
   //this section moves to the right turns the near roller
   Brain.Screen.clearScreen("Moving towards near roller");
-  setMotors(30);
-  allForward(100);
-  mechTranslate(600);
-  allForwardc(-100);
-  turnRoller(180);
+  setMotors(50);
+  allForward(250);
+  mechTranslate(900);
+  allForward(-250);
+  turnRoller(1800);
   allForward(100);
   //drive towards and turns next roller
-  Brain.Screen.clearScreen("Moving towards near roller");  
-  setMotors(50);
-  tankTurn(-45); // need to fine tune degrees
-  mechTranslate(600);
-  tankTurn(45);
-  mechTranslate(100);
+  Brain.Screen.clearScreen("Moving towards other near roller");
+  tankTurn(-300); // need to fine tune degrees
+  mechTranslate(1500);
+  tankTurn(300);
+  mechTranslate(50);
   allForwardc(100);
   turnRoller(180);
   allForward(-100);
@@ -113,7 +116,7 @@ void skillsRollersFirst(){
   //moves towards far side match-loader
   mechTranslate(200);
   tankTurn(90);
-  allForward(4000); // drives roughly across field (not accounting for disks in the way)
+  allForward(5508); // drives roughly across field (not accounting for disks in the way)
   tankTurn(90);
   mechTranslate(-200);
   //shoots disks from side loader
