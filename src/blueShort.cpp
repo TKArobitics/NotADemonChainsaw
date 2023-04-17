@@ -80,6 +80,35 @@ void skillsDisksFirst(){ // please comment on what each line does
   expandStop(); // stops the expansion motor
 } 
 
+void guaranteedLongRoller(){
+  Brain.Screen.print("Running guaranteedLongRoller");
+  setMotors(20);
+  allForward(200);
+  mechTranslate(800);
+  allForwardc(-250);
+  turnRoller(600);  // check specific values later
+  allForward(200);
+  tankTurn(-200);
+  Brain.Screen.print("Finished guaranteedLongRoller");
+}
+
+void guaranteedShortRoller(){
+  allForwardc(-100);
+  turnRoller(600);
+  allForward(100);
+}
+
+void guaranteedShooter(){
+  Brain.Screen.print("Running guaranteedShooter");
+  spinUp();
+  wait(3,sec);
+  autoConveyor();
+  wait(30, sec);
+  conveyorStop();
+  flyWheelStop();
+  Brain.Screen.print("Finished guaranteedShooter");
+}
+
 // 1000 dist = 24.5 inches
 // 360 dist = 9.25 inches
 // 100 dist = 2.45 inches
