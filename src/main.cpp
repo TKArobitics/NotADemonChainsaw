@@ -287,8 +287,11 @@ void autonomous(void)
   // getOtherRoller();
   // autonomousSkills();
   // skillsDisksFirst();
-   skillsRollersFirst();
+  // skillsRollersFirst();
   // testDriveDist(360);
+  // guaranteedShooter();
+  // guaranteedShortRoller();
+  guaranteedLongRoller();
 
   Brain.Screen.print("Finished Autonomous");
 }
@@ -903,7 +906,7 @@ void usercontrol(void)
     // wheelsSensorBot();
 
   
-    // getLocation();
+    getLocation();
     // posisioning(0);
     //  //acklenNator(); //drivercontrol
     //  //screenDisplay();
