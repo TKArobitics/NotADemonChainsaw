@@ -489,6 +489,43 @@ void crazyIdea(int xvalue, int yvalue)
   backRightDrive.spin(vex::reverse, backRightWheel, vex::percent);
 }
 
+void gpsTurning(int destination){
+  //important values: a: 45, b: 225
+  int normalizeValue = 180 - destination;
+  //a: 135 b: -45
+  int z = GPSSensor.heading() + normalizeValue;
+  //if facing 135 a: 270 b:90
+  int speed = 50;
+  if(z>190){
+    speed = -100 * (abs(180-z)/180); 
+    //a: -50 b:n/a
+    if(speed<20){
+      speed = -20;
+    }
+    else if(speed > 100){
+      speed = -100;
+    }
+  }
+  else if(z<170){
+    speed = 100 * (abs(180-z)/180); 
+    if(speed<20){
+      speed = 20;
+      //a: n/a b: 50
+    }
+    else if(speed > 100){
+      speed = 100;
+    }
+  }
+  else{
+    speed = 0;
+  }
+
+  frontLeftDrive.spin(vex::forward, speed, vex::percent);
+  backLeftDrive.spin(vex::forward, speed, vex::percent);
+  frontRightDrive.spin(vex::reverse, speed, vex::percent);
+  backRightDrive.spin(vex::reverse, speed, vex::percent);
+}
+
 void expand()
 {
   if (controller1.ButtonLeft.pressing())
@@ -916,7 +953,7 @@ void usercontrol(void)
     // wheelsSensorBot();
 
   
-    getLocation();
+    // getLocation();
     // posisioning(0);
     //  //acklenNator(); //drivercontrol
     //  //screenDisplay();
