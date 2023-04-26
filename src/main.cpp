@@ -12,7 +12,6 @@
 // [Name]               [Type]        [Port(s)]
 // GPS21                gps           21
 // ---- END VEXCODE CONFIGURED DEVICES ----
-
 #include "vex.h"
 #include "blueShort.h"
 #include "blueLong.h"
@@ -40,6 +39,15 @@ void pre_auton(void)
   vexcodeInit();
   // All activities that occur before the competition starts
   // Example: clearing encoders, setting servo positions, ...
+}
+
+void replaceOnControllerScreen(char myMessage){
+  controller1.Screen.clearScreen();
+  controller1.Screen.print(myMessage);
+}
+void replaceOnBrainScreen(char myMessage){
+  Brain.Screen.clearScreen();
+  Brain.Screen.print(myMessage);
 }
 
 void setMotors(int prct)

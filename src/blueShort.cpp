@@ -10,7 +10,7 @@ using namespace vex;
 // A global instance of competition
 
 
-  // Brain.Screen.print("Running blueShort.\n");
+  // controller1.Screen.print("Running blueShort.\n");
   // startLauncher(80);
   // autoConveyor(25);
   // tankTurn(90);
@@ -21,7 +21,7 @@ using namespace vex;
   // this is b bot's
 
 void blueShort(){ // please comment on what each line does
-  Brain.Screen.print("Running blueShort.\n");
+  replaceOnControllerScreen("Running BlueShort");
   // startLauncher(80);
   // autoConveyor(25);
   setMotors(10); // sets motor speed to 10%
@@ -64,7 +64,6 @@ void autonomousSkills(){ // please comment on what each line does
   tankTurn(300); // rotates the motors 300 degrees right
   allForward(600); // rotates all motors 600 degrees
   mechTranslate(600); // will translationally drive to the 
-
 }
 
 void skillsDisksFirst(){ // please comment on what each line does
@@ -81,7 +80,8 @@ void skillsDisksFirst(){ // please comment on what each line does
 } 
 
 void guaranteedLongRoller(){
-  Brain.Screen.print("Running guaranteedLongRoller");
+  controller1.Screen.clearScreen();
+  controller1.Screen.print("Running guaranteedLongRoller");
   setMotors(20);
   allForward(200);
   mechTranslate(800);
@@ -89,24 +89,28 @@ void guaranteedLongRoller(){
   turnRoller(600);  // check specific values later
   allForward(200);
   tankTurn(-200);
-  Brain.Screen.print("Finished guaranteedLongRoller");
+  controller1.Screen.print("Finished guaranteedLongRoller");
 }
 
 void guaranteedShortRoller(){
+  controller1.Screen.clearScreen();
+  controller1.Screen.print("Running guaranteedShortRoller");
   allForwardc(-100);
   turnRoller(600);
   allForward(100);
+  controller1.Screen.print("Finished guaranteedShortRoller");  
 }
 
 void guaranteedShooter(){
-  Brain.Screen.print("Running guaranteedShooter");
+  controller1.Screen.clearScreen();  
+  controller1.Screen.print("Running guaranteedShooter");
   spinUp();
   wait(3,sec);
   autoConveyor();
   wait(30, sec);
   conveyorStop();
   flyWheelStop();
-  Brain.Screen.print("Finished guaranteedShooter");
+  controller1.Screen.print("Finished guaranteedShooter");
 }
 
 // 1000 dist = 24.5 inches
@@ -114,8 +118,9 @@ void guaranteedShooter(){
 // 100 dist = 2.45 inches
 // 40.8 dist = 1 inch
 void skillsRollersFirst(){ 
+  controller1.Screen.clearScreen();  
   //this section moves to the right turns the near roller
-  Brain.Screen.clearScreen("Moving towards near roller");
+  controller1.Screen.print("Moving towards near roller");
   setMotors(50);
   allForward(250);
   mechTranslate(900);
@@ -123,7 +128,8 @@ void skillsRollersFirst(){
   turnRoller(1800);
   allForward(100);
   //drive towards and turns next roller
-  Brain.Screen.clearScreen("Moving towards other near roller");
+  controller1.Screen.clearScreen();
+  controller1.Screen.print("Moving towards other near roller");
   tankTurn(-300); // need to fine tune degrees
   mechTranslate(1500);
   tankTurn(300);

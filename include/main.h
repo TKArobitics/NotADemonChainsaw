@@ -1,3 +1,5 @@
+void replaceOnBrainScreen();
+void replaceOnControllerScreen();
 void startLauncher(int);
 void autoPusher(int);
 void autoConveyor(int);
