@@ -875,15 +875,18 @@ int flyWheelSpeed = 50;
 
 int flyWheelAdjustment(){
   if(controller1.ButtonUp.pressing() && flyWheelSpeed < 100){
-    flyWheelSpeed = flyWheelSpeed + 10;
+    flyWheelSpeed = flyWheelSpeed + 5;
   }
   else if(controller1.ButtonDown.pressing() && flyWheelSpeed > 0){
-    flyWheelSpeed = flyWheelSpeed - 10;
+    flyWheelSpeed = flyWheelSpeed - 5;
   }
-  // controller1.Screen.clearScreen();
-  // controller1.Screen.setCursor(1,1);
-  // controller1.Screen.print(flyWheelSpeed);
+  printFlyWheelSpeed(flyWheelSpeed);
   return flyWheelSpeed;
+}
+
+void printFlyWheelSpeed(int speed){
+  controller1.Screen.clearScreen();
+  controller1.Screen.print(speed);
 }
 
 bool flyWheelOn = false;
@@ -898,7 +901,7 @@ void flyWheelControl (){
     flyWheelOn = false;
   }
   if(flyWheelOn == true){
-    flyWheel.spin(reverse, 45, pct);
+    flyWheel.spin(reverse, flyWheelSpeed, pct);
   }
   else{
     flyWheel.stop();
