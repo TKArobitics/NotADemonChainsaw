@@ -843,9 +843,9 @@ int flyWheelAdjustment(){
   else if(controller1.ButtonDown.pressing() && flyWheelSpeed > 0){
     flyWheelSpeed = flyWheelSpeed - 10;
   }
-  controller1.Screen.clearScreen();
-  controller1.Screen.setCursor(1,1);
-  controller1.Screen.print(flyWheelSpeed);
+  // controller1.Screen.clearScreen();
+  // controller1.Screen.setCursor(1,1);
+  // controller1.Screen.print(flyWheelSpeed);
   return flyWheelSpeed;
 }
 
@@ -902,11 +902,11 @@ void usercontrol(void)
     // ........................................................................
     conveyorStart();
     conveyorControl(); // intake
-    launcher();        // output launcher
+    // launcher();        // output launcher
     mechaniumWheels(); // drivecontrol
     expand();          // Expander
     troubleShooting();
-    // flyWheelAdjustment();
+    flyWheelAdjustment();
     // pusher();
     flyWheelControl();
     rollerThing();
