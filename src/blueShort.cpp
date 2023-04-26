@@ -21,7 +21,7 @@ using namespace vex;
   // this is b bot's
 
 void blueShort(){ // please comment on what each line does
-  replaceOnControllerScreen("Running BlueShort");
+  // replaceOnControllerScreen("Running BlueShort");
   // startLauncher(80);
   // autoConveyor(25);
   setMotors(10); // sets motor speed to 10%

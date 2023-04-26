@@ -41,14 +41,16 @@ void pre_auton(void)
   // Example: clearing encoders, setting servo positions, ...
 }
 
-void replaceOnControllerScreen(char myMessage){
-  controller1.Screen.clearScreen();
-  controller1.Screen.print(myMessage);
-}
-void replaceOnBrainScreen(char myMessage){
-  Brain.Screen.clearScreen();
-  Brain.Screen.print(myMessage);
-}
+
+// these functions were intended to write to the brain and controller after erasing the previous message. Not worth the time sink.
+// void replaceOnControllerScreen(char myMessage){
+//   controller1.Screen.clearScreen();
+//   controller1.Screen.print(myMessage);
+// }
+// void replaceOnBrainScreen(char myMessage){
+//   Brain.Screen.clearScreen();
+//   Brain.Screen.print(myMessage);
+// }
 
 void setMotors(int prct)
 {
