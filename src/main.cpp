@@ -704,73 +704,73 @@ void normalizing(bool turningRight){
   lagging = GPSSensor.heading();
 }
 
-void posisioning(float target)
-{
-  float x = GPSSensor.xPosition(mm);
-  float y = GPSSensor.yPosition(mm);
-  float z = gpsAdjustment();
+// void posisioning(float target)
+// {
+//   float x = GPSSensor.xPosition(mm);
+//   float y = GPSSensor.yPosition(mm);
+//   float z = gpsAdjustment();
 
-  controller1.Screen.clearScreen();
-  controller1.Screen.setCursor(1, 1);
-  controller1.Screen.print("Heading: ");
-  controller1.Screen.print(z);
-  controller1.Screen.setCursor(2, 1);
-  controller1.Screen.print("Logic: ");
-  if (z > target + margin)
-  {
-    controller1.Screen.print(target + margin);
-    controller1.Screen.print(" < ");
-    controller1.Screen.print(z);
-    controller1.Screen.setCursor(3, 1);
-    controller1.Screen.print("Turning Left");
-  }
-  else if (z <= target + margin)
-  {
-    controller1.Screen.print(target + margin);
-    controller1.Screen.print(" < ");
-    controller1.Screen.print(z);
-    controller1.Screen.setCursor(3, 1);
-    controller1.Screen.print("Turning Right");
-  }
+//   controller1.Screen.clearScreen();
+//   controller1.Screen.setCursor(1, 1);
+//   controller1.Screen.print("Heading: ");
+//   controller1.Screen.print(z);
+//   controller1.Screen.setCursor(2, 1);
+//   controller1.Screen.print("Logic: ");
+//   if (z > target + margin)
+//   {
+//     controller1.Screen.print(target + margin);
+//     controller1.Screen.print(" < ");
+//     controller1.Screen.print(z);
+//     controller1.Screen.setCursor(3, 1);
+//     controller1.Screen.print("Turning Left");
+//   }
+//   else if (z <= target + margin)
+//   {
+//     controller1.Screen.print(target + margin);
+//     controller1.Screen.print(" < ");
+//     controller1.Screen.print(z);
+//     controller1.Screen.setCursor(3, 1);
+//     controller1.Screen.print("Turning Right");
+//   }
 
-  // Brain.Screen.setCursor(1, 1);
-  // Brain.Screen.clearScreen();
-  // Brain.Screen.print("x = ");
-  // Brain.Screen.print(x);
-  // Brain.Screen.print("y = ");
-  // Brain.Screen.print(y);
-  // Brain.Screen.print("turn = ");
-  // Brain.Screen.print(z);
+//   // Brain.Screen.setCursor(1, 1);
+//   // Brain.Screen.clearScreen();
+//   // Brain.Screen.print("x = ");
+//   // Brain.Screen.print(x);
+//   // Brain.Screen.print("y = ");
+//   // Brain.Screen.print(y);
+//   // Brain.Screen.print("turn = ");
+//   // Brain.Screen.print(z);
 
-  if (isTurningRight == 1)
-  {
-    Brain.Screen.print("Turn Right");
-    robotTurn(turnSpeed);
-    normalizing(true);
-    if (z > target + margin)
-    {
-      Brain.Screen.print("Reversing");
-      isTurningRight = 0;
-      turnSpeed = turnSpeed * .5;
-      margin = margin * .5;
-    }
-  }
-  else
-  {
-    Brain.Screen.print("Turn Left");
-    robotTurn(-1 * turnSpeed);
-    normalizing(false);
-    if (z <= target - margin)
-    {
-      Brain.Screen.print("Reversing");
-      isTurningRight = 1;
-      turnSpeed = turnSpeed * .5;
-      margin = margin * .5;
-    }
-  }
-  controller1.Screen.setCursor(4, 1);
-  controller1.Screen.print(turnSpeed);
-}
+//   if (isTurningRight == 1)
+//   {
+//     Brain.Screen.print("Turn Right");
+//     robotTurn(turnSpeed);
+//     normalizing(true);
+//     if (z > target + margin)
+//     {
+//       Brain.Screen.print("Reversing");
+//       isTurningRight = 0;
+//       turnSpeed = turnSpeed * .5;
+//       margin = margin * .5;
+//     }
+//   }
+//   else
+//   {
+//     Brain.Screen.print("Turn Left");
+//     robotTurn(-1 * turnSpeed);
+//     normalizing(false);
+//     if (z <= target - margin)
+//     {
+//       Brain.Screen.print("Reversing");
+//       isTurningRight = 1;
+//       turnSpeed = turnSpeed * .5;
+//       margin = margin * .5;
+//     }
+//   }
+//   controller1.Screen.setCursor(4, 1);
+//   controller1.Screen.print(turnSpeed);
+// }
 
 void screenDisplay()
 {
