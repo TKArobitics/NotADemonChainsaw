@@ -496,29 +496,27 @@ void gpsTurning(int destination){
   int z = GPSSensor.heading() + normalizeValue;
   //if facing 135 a: 270 b:90
   int speed = 50;
-  if(z>190){
+  if(z>181){
     speed = -100 * (abs(180-z)/180); 
     //a: -50 b:n/a
-    if(speed<20){
-      speed = -20;
+    if(speed>-5){
+      speed = -5;
     }
-    else if(speed > 100){
+    else if(speed < -100){
       speed = -100;
     }
   }
-  else if(z<170){
+  else if(z<179){
     speed = 100 * (abs(180-z)/180); 
-    if(speed<20){
-      speed = 20;
+    if(speed<5){
+      speed = 5;
       //a: n/a b: 50
     }
     else if(speed > 100){
       speed = 100;
     }
   }
-  else{
-    speed = 0;
-  }
+
 
   frontLeftDrive.spin(vex::forward, speed, vex::percent);
   backLeftDrive.spin(vex::forward, speed, vex::percent);
