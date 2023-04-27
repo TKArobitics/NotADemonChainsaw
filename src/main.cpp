@@ -287,7 +287,7 @@ void testDriveDist(int dist){
 
 void autonomous(void)
 {
-  Brain.Screen.print("running");
+  controller1.Screen.print("running");
 
   // autoMechan(10000);
   // shortSide();
@@ -303,7 +303,7 @@ void autonomous(void)
   // guaranteedShortRoller();
   // guaranteedLongRoller();
 
-  Brain.Screen.print("Finished Autonomous");
+  controller1.Screen.print("Finished Autonomous");
 }
 
 void autoTest(){

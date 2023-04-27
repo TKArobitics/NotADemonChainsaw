@@ -66,7 +66,7 @@ void autonomousSkills(){ // please comment on what each line does
   mechTranslate(600); // will translationally drive to the 
 }
 
-void skillsDisksFirst(){ // please comment on what each line does
+void skillsDisksFirst(){ // This program should fire all of the pre-load and match-load disks for the skills competition and proceed to expand from the corner.
   controller1.Screen.clearScreen();
   controller1.Screen.print("Running skillsDisksFirst()");
   spinUp(); // starts the flywheel
