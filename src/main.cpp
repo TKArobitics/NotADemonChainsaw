@@ -199,11 +199,11 @@ void allStop()
   backRightDrive.stop(hold);
 }
 
-// void startLauncher()
-// {
-//   launcherR.spin(forward);
-//   launcherL.spin(reverse);
-// }
+void startLauncher()
+{
+  launcherR.spin(forward);
+  launcherL.spin(reverse);
+}
 
 void turnAndIntake(long z)
 {
