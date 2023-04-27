@@ -199,11 +199,11 @@ void allStop()
   backRightDrive.stop(hold);
 }
 
-void startLauncher()
-{
-  launcherR.spin(forward);
-  launcherL.spin(reverse);
-}
+// void startLauncher()
+// {
+//   launcherR.spin(forward);
+//   launcherL.spin(reverse);
+// }
 
 void turnAndIntake(long z)
 {
@@ -385,18 +385,30 @@ void rollerSpeed()
   }
 }
 
-void autoRoller ()
+void autoRollerBlue ()
+{
+  colorSensor.takeSnapshot(colorSensor__REDSIDE);
+  if (colorSensor.objectCount > 0)
+  {
+    rollerMotor.spin(forward, 35, pct);
+  }
+  else
+  {
+    rollerMotor.stop();
+  }  
+}
+void autoRollerRed ()
 {
   colorSensor.takeSnapshot(colorSensor__BLUESIDE);
   if (colorSensor.objectCount > 0)
-    {
-      rollerMotor.spin(forward, 20, pct);
-    }
-    else
-    {
-      rollerMotor.stop();
-    }
+  {
+    rollerMotor.spin(forward, 35, pct);
   }
+  else
+  {
+    rollerMotor.stop();
+  }  
+}
 
 
 // allows for forward and reverse control of the roller
@@ -426,7 +438,15 @@ void rollerThing()
     }
   }
   else{
-    autoRoller();
+    if(controller1.ButtonRight.pressing()){
+      // comment out whichever autoRoller function you dont want to use in the match
+      
+      autoRollerRed();
+      // autoRollerBlue();
+    }
+    else{
+      rollerMotor.stop();
+    }  
   }
 }
 
@@ -869,18 +889,18 @@ void whatColorBlue()
 }
 
 
-int flyWheelSpeed = 50;
+int flyWheelSpeed = 45;
 
-int flyWheelAdjustment(){
-  if(controller1.ButtonUp.pressing() && flyWheelSpeed < 100){
-    flyWheelSpeed = flyWheelSpeed + 5;
-  }
-  else if(controller1.ButtonDown.pressing() && flyWheelSpeed > 0){
-    flyWheelSpeed = flyWheelSpeed - 5;
-  }
-  printFlyWheelSpeed(flyWheelSpeed);
-  return flyWheelSpeed;
-}
+// int flyWheelAdjustment(){
+//   if(controller1.ButtonUp.pressing() && flyWheelSpeed < 100){
+//     flyWheelSpeed = flyWheelSpeed + 5;
+//   }
+//   else if(controller1.ButtonDown.pressing() && flyWheelSpeed > 0){
+//     flyWheelSpeed = flyWheelSpeed - 5;
+//   }
+//   printFlyWheelSpeed(flyWheelSpeed);
+//   return flyWheelSpeed;
+// }
 
 void printFlyWheelSpeed(int speed){
   controller1.Screen.clearScreen();
@@ -943,8 +963,8 @@ void usercontrol(void)
     // launcher();        // output launcher
     mechaniumWheels(); // drivecontrol
     expand();          // Expander
-    troubleShooting();
-    flyWheelAdjustment();
+    // troubleShooting();
+    // flyWheelAdjustment();
     // pusher();
     flyWheelControl();
     rollerThing();
