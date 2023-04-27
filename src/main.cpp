@@ -341,11 +341,11 @@ void conveyorControl()
   // conveyorStart();
   if (conveyor == 1)
   {
-    conveyorMotor.spin(vex::forward, 100, velocityUnits::pct);
+    conveyorMotor.spin(vex::reverse, 100, velocityUnits::pct);
   }
   else if (conveyor == -1)
   {
-    conveyorMotor.spin(vex::reverse, 100, velocityUnits::pct);
+    conveyorMotor.spin(vex::forward, 100, velocityUnits::pct);
   }
   else 
   {
@@ -919,7 +919,7 @@ void flyWheelControl (){
     flyWheelOn = false;
   }
   if(flyWheelOn == true){
-    flyWheel.spin(reverse, flyWheelSpeed, pct);
+    flyWheel.spin(forward, flyWheelSpeed, pct);
   }
   else{
     flyWheel.stop();
