@@ -889,7 +889,7 @@ void whatColorBlue()
 }
 
 
-int flyWheelSpeed = 45;
+int flyWheelSpeed = 75;
 
 // int flyWheelAdjustment(){
 //   if(controller1.ButtonUp.pressing() && flyWheelSpeed < 100){
