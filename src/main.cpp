@@ -87,7 +87,7 @@ void autoPusher(int time){
 }
 
 void autoConveyor(){
-  conveyorMotor.spin(forward);
+  conveyorMotor.spin(reverse);
 }
 
 void conveyorStop(){
@@ -139,7 +139,7 @@ void allExtraStop(){
 }
 
 void spinUp(){
-  flyWheel.spin(reverse);
+  flyWheel.spin(forward,100,pct);
 }
 
 void allStart()
@@ -296,12 +296,12 @@ void autonomous(void)
   // blueLong();
   // getOtherRoller();
   // autonomousSkills();
-  // skillsDisksFirst();
+  skillsDisksFirst();
   // skillsRollersFirst();
   // testDriveDist(360);
   // guaranteedShooter();
   // guaranteedShortRoller();
-  guaranteedLongRoller();
+  // guaranteedLongRoller();
 
   Brain.Screen.print("Finished Autonomous");
 }
@@ -441,8 +441,8 @@ void rollerThing()
     if(controller1.ButtonRight.pressing()){
       // comment out whichever autoRoller function you dont want to use in the match
       
-      autoRollerRed();
-      // autoRollerBlue();
+      // autoRollerRed();
+      autoRollerBlue();
     }
     else{
       rollerMotor.stop();

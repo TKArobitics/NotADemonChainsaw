@@ -67,16 +67,22 @@ void autonomousSkills(){ // please comment on what each line does
 }
 
 void skillsDisksFirst(){ // please comment on what each line does
+  controller1.Screen.clearScreen();
+  controller1.Screen.print("Running skillsDisksFirst()");
   spinUp(); // starts the flywheel
   wait(7, sec); // waits for the flywheel to reach max speed before proceeding
   autoConveyor(); // starts the conveyor
   wait(30, sec); // waits until all match loads are done shooting
   conveyorStop(); // stops the conveyor
   flyWheelStop(); // stops the flywheel
-  tankTurn(300); // turns the motors 300 degrees to the right
+  mechTranslate(-200);
+  allForward(-100);
+  tankTurn(-300); // turns the motors 300 degrees to the right
+  controller1.Screen.clearScreen();
+  controller1.Screen.print("expanding");
   expandSkill(); // triggers the expansion motor (DOES NOT TURN OFF)
   wait(5, sec); // waits for expansion motor to pull pin
-  expandStop(); // stops the expansion motor
+  // expandStop(); // stops the expansion motor
 } 
 
 void guaranteedLongRoller(){
