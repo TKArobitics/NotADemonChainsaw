@@ -871,6 +871,11 @@ void whatColorBlue()
 
 int flyWheelSpeed = 50;
 
+void printFlyWheelSpeed(int speed){
+  controller1.Screen.clearScreen();
+  controller1.Screen.print(speed);
+}
+
 int flyWheelAdjustment(){
   if(controller1.ButtonUp.pressing() && flyWheelSpeed < 100){
     flyWheelSpeed = flyWheelSpeed + 5;
@@ -882,10 +887,7 @@ int flyWheelAdjustment(){
   return flyWheelSpeed;
 }
 
-void printFlyWheelSpeed(int speed){
-  controller1.Screen.clearScreen();
-  controller1.Screen.print(speed);
-}
+
 
 bool flyWheelOn = false;
 
