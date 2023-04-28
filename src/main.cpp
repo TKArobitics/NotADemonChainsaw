@@ -52,6 +52,31 @@ void pre_auton(void)
 //   Brain.Screen.print(myMessage);
 // }
 
+void autoRollerBlue ()
+{
+  colorSensor.takeSnapshot(colorSensor__REDSIDE);
+  if (colorSensor.objectCount > 0)
+  {
+    rollerMotor.spin(forward, 35, pct);
+  }
+  else
+  {
+    rollerMotor.stop();
+  }  
+}
+void autoRollerRed ()
+{
+  colorSensor.takeSnapshot(colorSensor__BLUESIDE);
+  if (colorSensor.objectCount > 0)
+  {
+    rollerMotor.spin(forward, 35, pct);
+  }
+  else
+  {
+    rollerMotor.stop();
+  }  
+}
+
 void setMotors(int prct)
 {
   frontLeftDrive.setVelocity(prct, pct);
@@ -70,6 +95,39 @@ void turnRoller(int amount)
   rollerMotor.spinFor(reverse, amount, degrees, false);
 }
 
+bool rollerIsCorrect = false;
+
+
+//turns the roller to the blue side durring autonomous
+void autonTurnRollerBlue()
+{
+  while(rollerIsCorrect==1){
+    colorSensor.takeSnapshot(colorSensor__REDSIDE);
+    if (colorSensor.objectCount > 0){
+      rollerMotor.spin(forward, 35, pct);
+    }
+    else{
+      rollerMotor.stop();
+      rollerIsCorrect = true;
+    }  
+  }
+}
+
+//turns the roller to the red side durring autonomous 
+void autonTurnRollerRed()
+{
+  while(rollerIsCorrect==1){
+    colorSensor.takeSnapshot(colorSensor__BLUESIDE);
+    if (colorSensor.objectCount > 0){
+      rollerMotor.spin(forward, 35, pct);
+    }
+    else{
+      rollerMotor.stop();
+      rollerIsCorrect = true;
+    }  
+  }
+}
+
 void turnRollerTrue(int amount)
 {
   rollerMotor.spinFor(reverse, amount, degrees);
@@ -86,23 +144,27 @@ void autoPusher(int time){
   pusherMotor.spinFor(reverse, time, sec);
 }
 
+// This function will start the conveyorMotor
 void autoConveyor(){
-  conveyorMotor.spin(forward);
+  conveyorMotor.spin(reverse, 100, pct);
 }
 
+// This function will stop the conveyorMotor
 void conveyorStop(){
   conveyorMotor.stop();
 }
 
+// This function will stop the expandMotor
 void expandStop(){
   expandMotor.stop();
 }
 
+// This function will stop the flyWheel
 void flyWheelStop(){
   flyWheel.stop();
 }
 
-
+// This function will spin all motors in one direction (positive "dist" will move forwards, negative "dist" will move reverse)
 void allForward(int dist)
 {
   frontLeftDrive.spinFor(forward, dist, degrees, false);
@@ -111,6 +173,7 @@ void allForward(int dist)
   backLeftDrive.spinFor(forward, dist, degrees);
 }
 
+// This function will translationally drive in one direction (positive dist will go to the right, negative dist ill go to the left)
 void mechTranslate(int dist)
 {
   frontLeftDrive.spinFor(forward, dist, degrees, false);
@@ -119,6 +182,7 @@ void mechTranslate(int dist)
   backLeftDrive.spinFor(reverse, dist, degrees);
 }
 
+// This function will spin all motors in one direction (positive "dist" will move forwards, negative "dist" will move reverse) Additionally this program will not wait to complete before moving to the next function
 void allForwardc(int dist)
 {
   frontLeftDrive.spinFor(forward, dist, degrees, false);
@@ -127,6 +191,7 @@ void allForwardc(int dist)
   backLeftDrive.spinFor(forward, dist, degrees, false);
 }
 
+// This program will stop every motor except for the drivetrain
 void allExtraStop(){
   testMotor.stop();
   rollerMotor.stop();
@@ -138,10 +203,12 @@ void allExtraStop(){
   expandMotor.stop();
 }
 
+// This function should start the flywheelMotor in the forward direction.
 void spinUp(){
-  flyWheel.spin(reverse);
+  flyWheel.spin(forward,100,pct);
 }
 
+// This function will start spinning the drivetrain (try not to use this)
 void allStart()
 {
   frontLeftDrive.spin(forward);
@@ -150,6 +217,7 @@ void allStart()
   backLeftDrive.spin(forward);
 }
 
+// This function will forcefully halt the drivetrain motors
 void allBrake()
 {
   frontLeftDrive.stop(brake);
@@ -158,6 +226,7 @@ void allBrake()
   backLeftDrive.stop(brake);
 }
 
+// This function will turn left by pivoting off of the backLeft motor
 void backLeftPivot(float dist)
 {
   frontLeftDrive.spinFor(reverse, dist, degrees, false);
@@ -166,6 +235,7 @@ void backLeftPivot(float dist)
   backLeftDrive.spinFor(forward, dist, degrees);
 }
 
+// This function will turn the robot in place (positive dist will rotate to the right, negative dist will rotate to the left)
 void tankTurn(int dist)
 {
   frontLeftDrive.spinFor(forward, dist, degrees, false);
@@ -174,6 +244,7 @@ void tankTurn(int dist)
   backLeftDrive.spinFor(forward, dist, degrees);
 }
 
+// ????
 void autoMechan(int z)
 {
   frontLeftDrive.setVelocity(100, pct);
@@ -186,11 +257,13 @@ void autoMechan(int z)
   backRightDrive.spinFor(forward, z, deg, false);
 }
 
+// This function will sping the expandMotor in the reverse direction
 void expandSkill()
 {
-  expandMotor.spin(reverse);
+  expandMotor.spin(reverse, 100, pct);
 }
 
+// This function will non-forcefully stop the driveTrain motors
 void allStop()
 {
   frontLeftDrive.stop(hold);
@@ -199,17 +272,20 @@ void allStop()
   backRightDrive.stop(hold);
 }
 
+// [THIS PROGRAM IS OUTDATED REMOVE PLEASE!!!]
 void startLauncher()
 {
   launcherR.spin(forward);
   launcherL.spin(reverse);
 }
 
+// [THIS PROGRAM IS OUTDATED REMOVE PLEASE!!!]
 void turnAndIntake(long z)
 {
   conveyorMotor.spinFor(forward, z, deg, false);
 }
 
+// [THIS PROGRAM IS OUTDATED REMOVE PLEASE!!!]
 void mechaniumRight(int howFar)
 {
   frontLeftDrive.spinFor(forward, howFar, deg, false);
@@ -218,6 +294,7 @@ void mechaniumRight(int howFar)
   backRightDrive.spinFor(reverse, howFar, deg);
 }
 
+// [THIS PROGRAM IS OUTDATED REMOVE PLEASE!!!]
 void mechaniumLeft(int howFar)
 {
   frontLeftDrive.spinFor(reverse, howFar, deg, false);
@@ -270,6 +347,7 @@ void skills()
   expandSkill();
 }
 
+// [THIS PROGRAM IS OUTDATED REMOVE PLEASE!!!]
 void driveForward(int duration)
 {
 
@@ -285,9 +363,15 @@ void testDriveDist(int dist){
   allForward(dist);
 }
 
+// This program will convert "dist" to inches and return it as a double (decimal number)
+double distToInches(int dist){
+  double inches = dist * 0.0245;
+  return inches;
+}
+
 void autonomous(void)
 {
-  Brain.Screen.print("running");
+  controller1.Screen.print("running");
 
   // autoMechan(10000);
   // shortSide();
@@ -296,14 +380,16 @@ void autonomous(void)
   // blueLong();
   // getOtherRoller();
   // autonomousSkills();
-  // skillsDisksFirst();
+  skillsDisksFirst();
+  // autonTurnRollerBlue();
+  // autonTurnRollerRed();
   // skillsRollersFirst();
   // testDriveDist(360);
   // guaranteedShooter();
   // guaranteedShortRoller();
-  guaranteedLongRoller();
+  // guaranteedLongRoller();
 
-  Brain.Screen.print("Finished Autonomous");
+  controller1.Screen.print("Finished Autonomous");
 }
 
 void autoTest(){
@@ -341,11 +427,11 @@ void conveyorControl()
   // conveyorStart();
   if (conveyor == 1)
   {
-    conveyorMotor.spin(vex::forward, 100, velocityUnits::pct);
+    conveyorMotor.spin(vex::reverse, 100, velocityUnits::pct);
   }
   else if (conveyor == -1)
   {
-    conveyorMotor.spin(vex::reverse, 100, velocityUnits::pct);
+    conveyorMotor.spin(vex::forward, 100, velocityUnits::pct);
   }
   else 
   {
@@ -385,20 +471,6 @@ void rollerSpeed()
   }
 }
 
-void autoRoller ()
-{
-  colorSensor.takeSnapshot(colorSensor__BLUESIDE);
-  if (colorSensor.objectCount > 0)
-    {
-      rollerMotor.spin(forward, 20, pct);
-    }
-    else
-    {
-      rollerMotor.stop();
-    }
-  }
-
-
 // allows for forward and reverse control of the roller
 void rollerThing()
 {
@@ -426,7 +498,15 @@ void rollerThing()
     }
   }
   else{
-    autoRoller();
+    if(controller1.ButtonRight.pressing()){
+      // comment out whichever autoRoller function you dont want to use in the match
+      
+      // autoRollerRed();
+      autoRollerBlue();
+    }
+    else{
+      rollerMotor.stop();
+    }  
   }
 }
 
@@ -869,23 +949,23 @@ void whatColorBlue()
 }
 
 
-int flyWheelSpeed = 50;
+int flyWheelSpeed = 65;
 
 void printFlyWheelSpeed(int speed){
   controller1.Screen.clearScreen();
   controller1.Screen.print(speed);
 }
 
-int flyWheelAdjustment(){
-  if(controller1.ButtonUp.pressing() && flyWheelSpeed < 100){
-    flyWheelSpeed = flyWheelSpeed + 5;
-  }
-  else if(controller1.ButtonDown.pressing() && flyWheelSpeed > 0){
-    flyWheelSpeed = flyWheelSpeed - 5;
-  }
-  printFlyWheelSpeed(flyWheelSpeed);
-  return flyWheelSpeed;
-}
+// int flyWheelAdjustment(){
+//   if(controller1.ButtonUp.pressing() && flyWheelSpeed < 100){
+//     flyWheelSpeed = flyWheelSpeed + 5;
+//   }
+//   else if(controller1.ButtonDown.pressing() && flyWheelSpeed > 0){
+//     flyWheelSpeed = flyWheelSpeed - 5;
+//   }
+//   printFlyWheelSpeed(flyWheelSpeed);
+//   return flyWheelSpeed;
+// }
 
 
 
@@ -901,7 +981,7 @@ void flyWheelControl (){
     flyWheelOn = false;
   }
   if(flyWheelOn == true){
-    flyWheel.spin(reverse, flyWheelSpeed, pct);
+    flyWheel.spin(forward, flyWheelSpeed, pct);
   }
   else{
     flyWheel.stop();
@@ -945,8 +1025,8 @@ void usercontrol(void)
     // launcher();        // output launcher
     mechaniumWheels(); // drivecontrol
     expand();          // Expander
-    troubleShooting();
-    flyWheelAdjustment();
+    // troubleShooting();
+    // flyWheelAdjustment();
     // pusher();
     flyWheelControl();
     rollerThing();

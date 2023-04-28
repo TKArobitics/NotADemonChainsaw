@@ -48,7 +48,8 @@ void blueShort(){ // please comment on what each line does
   //next time adjust the angle when doing the roller by only driving the right side.
 }
 
-void autonomousSkills(){ // please comment on what each line does
+// ????
+void autonomousSkills(){ 
   setMotors(10); // sets the motor speed to 10%
   allForwardc(-100); // rotates all motors -100 degrees
   turnRollerTrue(600); // will pause all other programs while turning the roller
@@ -66,19 +67,27 @@ void autonomousSkills(){ // please comment on what each line does
   mechTranslate(600); // will translationally drive to the 
 }
 
-void skillsDisksFirst(){ // please comment on what each line does
+// This program should fire all of the pre-load and match-load disks for the skills competition and proceed to expand from the corner.
+void skillsDisksFirst(){ 
+  controller1.Screen.clearScreen();
+  controller1.Screen.print("Running skillsDisksFirst()");
   spinUp(); // starts the flywheel
   wait(7, sec); // waits for the flywheel to reach max speed before proceeding
   autoConveyor(); // starts the conveyor
   wait(30, sec); // waits until all match loads are done shooting
   conveyorStop(); // stops the conveyor
   flyWheelStop(); // stops the flywheel
-  tankTurn(300); // turns the motors 300 degrees to the right
+  mechTranslate(-200);
+  allForward(-100);
+  tankTurn(-300); // turns the motors 300 degrees to the right
+  controller1.Screen.clearScreen();
+  controller1.Screen.print("expanding");
   expandSkill(); // triggers the expansion motor (DOES NOT TURN OFF)
   wait(5, sec); // waits for expansion motor to pull pin
   expandStop(); // stops the expansion motor
 } 
 
+// ????
 void guaranteedLongRoller(){
   controller1.Screen.clearScreen();
   controller1.Screen.print("Running guaranteedLongRoller");
@@ -92,6 +101,7 @@ void guaranteedLongRoller(){
   controller1.Screen.print("Finished guaranteedLongRoller");
 }
 
+// ????
 void guaranteedShortRoller(){
   controller1.Screen.clearScreen();
   controller1.Screen.print("Running guaranteedShortRoller");
@@ -101,6 +111,7 @@ void guaranteedShortRoller(){
   controller1.Screen.print("Finished guaranteedShortRoller");  
 }
 
+// ????
 void guaranteedShooter(){
   controller1.Screen.clearScreen();  
   controller1.Screen.print("Running guaranteedShooter");
@@ -113,10 +124,7 @@ void guaranteedShooter(){
   controller1.Screen.print("Finished guaranteedShooter");
 }
 
-// 1000 dist = 24.5 inches
-// 360 dist = 9.25 inches
-// 100 dist = 2.45 inches
-// 40.8 dist = 1 inch
+// ????
 void skillsRollersFirst(){ 
   controller1.Screen.clearScreen();  
   //this section moves to the right turns the near roller
