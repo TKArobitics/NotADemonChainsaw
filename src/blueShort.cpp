@@ -20,6 +20,7 @@ using namespace vex;
   // turnRoller(90);
   // this is b bot's
 
+// This function tests if the inchesToDist() function works properly.
 void testingConversionInches(){
   allForward(inchesToDist(10.5));
 }

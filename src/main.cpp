@@ -77,6 +77,7 @@ void autoRollerRed ()
   }  
 }
 
+// This program will set drivetrain motor speeds to (prct)%
 void setMotors(int prct)
 {
   frontLeftDrive.setVelocity(prct, pct);
@@ -365,7 +366,9 @@ void testDriveDist(int dist){
 
 // This program will convert inches to "dist" and return it as a double (decimal number)
 double inchesToDist(double inches){
-  double dist = inches * 40.816;
+  float conversionConst = 2000/49;
+  setMotors(20);
+  double dist = inches * (conversionConst);
   return dist;
 }
 
