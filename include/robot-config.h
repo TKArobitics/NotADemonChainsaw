@@ -18,13 +18,16 @@ extern motor rollerMotor;
 
 extern motor conveyorMotor;
 
+// [Both launcherR and launcherL are outdated PLEASE REMOVE!!]
 extern motor launcherR;
 extern motor launcherL;
 
+// [Outdated - PLEASE REMOVE!!]
 extern motor pusherMotor;
 
 extern motor expandMotor;
 
+// [Outdated - PLEASE REMOVE!!]
 extern motor testMotor;
 
 extern gps GPSSensor;

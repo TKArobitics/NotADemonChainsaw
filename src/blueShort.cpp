@@ -20,6 +20,10 @@ using namespace vex;
   // turnRoller(90);
   // this is b bot's
 
+void testingConversionInches(){
+  allForward(inchesToDist(10.5));
+}
+
 void blueShort(){ // please comment on what each line does
   // replaceOnControllerScreen("Running BlueShort");
   // startLauncher(80);
@@ -188,5 +192,4 @@ void skillsRollersFirst(){
   expandSkill();
   wait(5, sec);
   expandStop();
-
 }

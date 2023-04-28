@@ -364,7 +364,7 @@ void testDriveDist(int dist){
 }
 
 // This program will convert inches to "dist" and return it as a double (decimal number)
-double inchesToDist(int inches){
+double inchesToDist(double inches){
   double dist = inches * 40.816;
   return dist;
 }
@@ -380,7 +380,7 @@ void autonomous(void)
   // blueLong();
   // getOtherRoller();
   // autonomousSkills();
-  skillsDisksFirst();
+  // skillsDisksFirst();
   // autonTurnRollerBlue();
   // autonTurnRollerRed();
   // skillsRollersFirst();
@@ -388,6 +388,7 @@ void autonomous(void)
   // guaranteedShooter();
   // guaranteedShortRoller();
   // guaranteedLongRoller();
+  testingConversionInches();
 
   controller1.Screen.print("Finished Autonomous");
 }
