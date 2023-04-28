@@ -48,7 +48,8 @@ void blueShort(){ // please comment on what each line does
   //next time adjust the angle when doing the roller by only driving the right side.
 }
 
-void autonomousSkills(){ // please comment on what each line does
+// ????
+void autonomousSkills(){ 
   setMotors(10); // sets the motor speed to 10%
   allForwardc(-100); // rotates all motors -100 degrees
   turnRollerTrue(600); // will pause all other programs while turning the roller
@@ -66,7 +67,8 @@ void autonomousSkills(){ // please comment on what each line does
   mechTranslate(600); // will translationally drive to the 
 }
 
-void skillsDisksFirst(){ // This program should fire all of the pre-load and match-load disks for the skills competition and proceed to expand from the corner.
+// This program should fire all of the pre-load and match-load disks for the skills competition and proceed to expand from the corner.
+void skillsDisksFirst(){ 
   controller1.Screen.clearScreen();
   controller1.Screen.print("Running skillsDisksFirst()");
   spinUp(); // starts the flywheel
@@ -85,6 +87,7 @@ void skillsDisksFirst(){ // This program should fire all of the pre-load and mat
   expandStop(); // stops the expansion motor
 } 
 
+// ????
 void guaranteedLongRoller(){
   controller1.Screen.clearScreen();
   controller1.Screen.print("Running guaranteedLongRoller");
@@ -98,6 +101,7 @@ void guaranteedLongRoller(){
   controller1.Screen.print("Finished guaranteedLongRoller");
 }
 
+// ????
 void guaranteedShortRoller(){
   controller1.Screen.clearScreen();
   controller1.Screen.print("Running guaranteedShortRoller");
@@ -107,6 +111,7 @@ void guaranteedShortRoller(){
   controller1.Screen.print("Finished guaranteedShortRoller");  
 }
 
+// ????
 void guaranteedShooter(){
   controller1.Screen.clearScreen();  
   controller1.Screen.print("Running guaranteedShooter");
@@ -119,10 +124,7 @@ void guaranteedShooter(){
   controller1.Screen.print("Finished guaranteedShooter");
 }
 
-// 1000 dist = 24.5 inches
-// 360 dist = 9.25 inches
-// 100 dist = 2.45 inches
-// 40.8 dist = 1 inch
+// ????
 void skillsRollersFirst(){ 
   controller1.Screen.clearScreen();  
   //this section moves to the right turns the near roller

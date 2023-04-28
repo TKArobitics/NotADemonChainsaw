@@ -144,23 +144,27 @@ void autoPusher(int time){
   pusherMotor.spinFor(reverse, time, sec);
 }
 
+// This function will start the conveyorMotor
 void autoConveyor(){
-  conveyorMotor.spin(reverse);
+  conveyorMotor.spin(reverse, 100, pct);
 }
 
+// This function will stop the conveyorMotor
 void conveyorStop(){
   conveyorMotor.stop();
 }
 
+// This function will stop the expandMotor
 void expandStop(){
   expandMotor.stop();
 }
 
+// This function will stop the flyWheel
 void flyWheelStop(){
   flyWheel.stop();
 }
 
-
+// This function will spin all motors in one direction (positive "dist" will move forwards, negative "dist" will move reverse)
 void allForward(int dist)
 {
   frontLeftDrive.spinFor(forward, dist, degrees, false);
@@ -169,6 +173,7 @@ void allForward(int dist)
   backLeftDrive.spinFor(forward, dist, degrees);
 }
 
+// This function will translationally drive in one direction (positive dist will go to the right, negative dist ill go to the left)
 void mechTranslate(int dist)
 {
   frontLeftDrive.spinFor(forward, dist, degrees, false);
@@ -177,6 +182,7 @@ void mechTranslate(int dist)
   backLeftDrive.spinFor(reverse, dist, degrees);
 }
 
+// This function will spin all motors in one direction (positive "dist" will move forwards, negative "dist" will move reverse) Additionally this program will not wait to complete before moving to the next function
 void allForwardc(int dist)
 {
   frontLeftDrive.spinFor(forward, dist, degrees, false);
@@ -185,6 +191,7 @@ void allForwardc(int dist)
   backLeftDrive.spinFor(forward, dist, degrees, false);
 }
 
+// This program will stop every motor except for the drivetrain
 void allExtraStop(){
   testMotor.stop();
   rollerMotor.stop();
@@ -196,10 +203,12 @@ void allExtraStop(){
   expandMotor.stop();
 }
 
+// This function should start the flywheelMotor in the forward direction.
 void spinUp(){
   flyWheel.spin(forward,100,pct);
 }
 
+// This function will start spinning the drivetrain (try not to use this)
 void allStart()
 {
   frontLeftDrive.spin(forward);
@@ -208,6 +217,7 @@ void allStart()
   backLeftDrive.spin(forward);
 }
 
+// This function will forcefully halt the drivetrain motors
 void allBrake()
 {
   frontLeftDrive.stop(brake);
@@ -216,6 +226,7 @@ void allBrake()
   backLeftDrive.stop(brake);
 }
 
+// This function will turn left by pivoting off of the backLeft motor
 void backLeftPivot(float dist)
 {
   frontLeftDrive.spinFor(reverse, dist, degrees, false);
@@ -224,6 +235,7 @@ void backLeftPivot(float dist)
   backLeftDrive.spinFor(forward, dist, degrees);
 }
 
+// This function will turn the robot in place (positive dist will rotate to the right, negative dist will rotate to the left)
 void tankTurn(int dist)
 {
   frontLeftDrive.spinFor(forward, dist, degrees, false);
@@ -232,6 +244,7 @@ void tankTurn(int dist)
   backLeftDrive.spinFor(forward, dist, degrees);
 }
 
+// ????
 void autoMechan(int z)
 {
   frontLeftDrive.setVelocity(100, pct);
@@ -244,11 +257,13 @@ void autoMechan(int z)
   backRightDrive.spinFor(forward, z, deg, false);
 }
 
+// This function will sping the expandMotor in the reverse direction
 void expandSkill()
 {
-  expandMotor.spin(reverse);
+  expandMotor.spin(reverse, 100, pct);
 }
 
+// This function will non-forcefully stop the driveTrain motors
 void allStop()
 {
   frontLeftDrive.stop(hold);
@@ -257,17 +272,20 @@ void allStop()
   backRightDrive.stop(hold);
 }
 
+// [THIS PROGRAM IS OUTDATED REMOVE PLEASE!!!]
 void startLauncher()
 {
   launcherR.spin(forward);
   launcherL.spin(reverse);
 }
 
+// [THIS PROGRAM IS OUTDATED REMOVE PLEASE!!!]
 void turnAndIntake(long z)
 {
   conveyorMotor.spinFor(forward, z, deg, false);
 }
 
+// [THIS PROGRAM IS OUTDATED REMOVE PLEASE!!!]
 void mechaniumRight(int howFar)
 {
   frontLeftDrive.spinFor(forward, howFar, deg, false);
@@ -276,6 +294,7 @@ void mechaniumRight(int howFar)
   backRightDrive.spinFor(reverse, howFar, deg);
 }
 
+// [THIS PROGRAM IS OUTDATED REMOVE PLEASE!!!]
 void mechaniumLeft(int howFar)
 {
   frontLeftDrive.spinFor(reverse, howFar, deg, false);
@@ -328,6 +347,7 @@ void skills()
   expandSkill();
 }
 
+// [THIS PROGRAM IS OUTDATED REMOVE PLEASE!!!]
 void driveForward(int duration)
 {
 
@@ -341,6 +361,12 @@ void driveForward(int duration)
 // 360 dist = 9.25 inches
 void testDriveDist(int dist){ 
   allForward(dist);
+}
+
+// This program will convert "dist" to inches and return it as a double (decimal number)
+double distToInches(int dist){
+  double inches = dist * 0.0245;
+  return inches;
 }
 
 void autonomous(void)
