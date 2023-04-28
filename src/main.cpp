@@ -363,10 +363,10 @@ void testDriveDist(int dist){
   allForward(dist);
 }
 
-// This program will convert "dist" to inches and return it as a double (decimal number)
-double distToInches(int dist){
-  double inches = dist * 0.0245;
-  return inches;
+// This program will convert inches to "dist" and return it as a double (decimal number)
+double inchesToDist(int inches){
+  double dist = inches * 40.816;
+  return dist;
 }
 
 void autonomous(void)
