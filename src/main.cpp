@@ -147,7 +147,7 @@ void autoPusher(int time){
 
 // This function will start the conveyorMotor
 void autoConveyor(){
-  conveyorMotor.spin(reverse, 100, pct);
+  conveyorMotor.spin(reverse, 80, pct);
 }
 
 // This function will stop the conveyorMotor
@@ -177,6 +177,7 @@ void allForward(int dist)
 // This function will translationally drive in one direction (positive dist will go to the right, negative dist ill go to the left)
 void mechTranslate(int dist)
 {
+  setMotors(80);
   frontLeftDrive.spinFor(forward, dist, degrees, false);
   frontRightDrive.spinFor(forward, dist, degrees, false);
   backRightDrive.spinFor(reverse, dist, degrees, false);
@@ -364,9 +365,9 @@ void testDriveDist(int dist){
   allForward(dist);
 }
 
-// This program will convert inches to "dist" and return it as a double (decimal number)
-double inchesToDist(double inches){
-  float conversionConst = 2000/49;
+// This program will convert inches to "dist" and return it as a double (decimal number) [WIP]
+double  inchesToDist(double inches){
+  float conversionConst = 40.8; // approx.= 40 (2000/49)
   setMotors(20);
   double dist = inches * (conversionConst);
   return dist;

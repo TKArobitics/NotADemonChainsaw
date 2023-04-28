@@ -22,7 +22,7 @@ using namespace vex;
 
 // This function tests if the inchesToDist() function works properly.
 void testingConversionInches(){
-  allForward(inchesToDist(10.5));
+  allForward(inchesToDist(45));
 }
 
 void blueShort(){ // please comment on what each line does
@@ -92,17 +92,19 @@ void skillsDisksFirst(){
   expandStop(); // stops the expansion motor
 } 
 
-// ????
+// This program should turn one roller on the long side (???) and fire two pre-loads at the high goal [HEAD TO HEAD CODE!] 
 void guaranteedLongRoller(){
   controller1.Screen.clearScreen();
   controller1.Screen.print("Running guaranteedLongRoller");
   setMotors(20);
-  allForward(200);
-  mechTranslate(800);
-  allForwardc(-250);
+  allForward(inchesToDist(2));
+  mechTranslate(inchesToDist(18));
+  allForwardc(inchesToDist(-2.5));
   turnRoller(600);  // check specific values later
-  allForward(200);
-  tankTurn(-200);
+  allForward(inchesToDist(300));
+  // tankTurn(-360); no need, already facing high goal
+  spinUp();
+  autoConveyor();
   controller1.Screen.print("Finished guaranteedLongRoller");
 }
 
