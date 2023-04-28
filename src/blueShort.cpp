@@ -218,7 +218,7 @@ void skillsRoller(){
 
 // This program will shoot for the high goal, move into position, and expand. [WIP]
 void skillsHighGoal(){
-  guaranteedShooter();`
+  guaranteedShooter();
   moveToPosSkills(2);
   expandSkill();
 }
