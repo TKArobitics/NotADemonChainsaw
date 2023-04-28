@@ -118,7 +118,7 @@ void guaranteedLongRoller(){
   controller1.Screen.print("Finished guaranteedLongRoller");
 }
 
-// ????
+// This program will move forward and turn the roller directly in front of itself 180 degrees
 void guaranteedShortRoller(){
   controller1.Screen.clearScreen();
   controller1.Screen.print("Running guaranteedShortRoller");
@@ -128,16 +128,16 @@ void guaranteedShortRoller(){
   controller1.Screen.print("Finished guaranteedShortRoller");  
 }
 
-// ????
+// This program will autonomously fire disks from side loader. (~30 secs runtime)
 void guaranteedShooter(){
   controller1.Screen.clearScreen();  
   controller1.Screen.print("Running guaranteedShooter");
   spinUp();
-  wait(3,sec);
+  wait(5, sec);
   autoConveyor();
-  wait(30, sec);
-  conveyorStop();
+  wait(24, sec);
   flyWheelStop();
+  conveyorStop();
   controller1.Screen.print("Finished guaranteedShooter");
 }
 
@@ -218,12 +218,7 @@ void skillsRoller(){
 
 // This program will shoot for the high goal, move into position, and expand. [WIP]
 void skillsHighGoal(){
-  spinUp();
-  wait(5, sec);
-  autoConveyor();
-  wait(24, sec);
-  flyWheelStop();
-  conveyorStop();
+  guaranteedShooter();`
   moveToPosSkills(2);
   expandSkill();
 }
