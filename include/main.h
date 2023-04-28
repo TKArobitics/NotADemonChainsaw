@@ -2,6 +2,7 @@
 // void replaceOnControllerScreen();
 void startLauncher(int);
 void autoPusher(int);
+double inchesToDist(double);
 void printFlyWheelSpeed(int);
 void autoConveyor(int);
 void tankTurn(int);
