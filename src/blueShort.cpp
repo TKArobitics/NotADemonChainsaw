@@ -26,8 +26,9 @@ void testingConversionInches(){
 }
 
 // This function tests if degreesToDist() function works properly.
-void testingConversionDegrees(){
-  tankTurn(degreesToDist(1000));
+void 
+testingConversionDegrees(){
+  tankTurn(degreesToDist(360));
 }
 
 void blueShort(){ // please comment on what each line does
@@ -104,12 +105,12 @@ void guaranteedLongRoller(){
   controller1.Screen.print("Running guaranteedLongRoller");
   // setMotors(20);
   allForward(inchesToDist(6));
-  mechTranslate(inchesToDist(20));
-  allForwardc(inchesToDist(-4));
+  mechTranslate(inchesToDist(25));
+  allForward(inchesToDist(-5));
   turnRoller(600);  // check specific values later
   wait(250, msec);
   allForward(inchesToDist(3));
-  tankTurn(240);
+  tankTurn(200);
   mechTranslate(inchesToDist(-75));
   spinUp();
   wait(5, sec);
@@ -121,9 +122,9 @@ void guaranteedLongRoller(){
 void guaranteedShortRoller(){
   controller1.Screen.clearScreen();
   controller1.Screen.print("Running guaranteedShortRoller");
-  allForwardc(-100);
-  turnRoller(600);
-  allForward(100);
+  allForward(inchesToDist(-4));
+  turnRollerTrue(-200);
+  allForward(inchesToDist(3));
   controller1.Screen.print("Finished guaranteedShortRoller");  
 }
 
@@ -204,4 +205,40 @@ void skillsRollersFirst(){
   expandSkill();
   wait(5, sec);
   expandStop();
+}
+
+// This program will spin a roller, move into position, and expand. [WIP]
+void skillsRoller(){
+  allForward(inchesToDist(-1));
+  turnRoller(-200);
+  allForward(inchesToDist(18));
+  moveToPosSkills(1);
+  // expandSkill();
+}
+
+// This program will shoot for the high goal, move into position, and expand. [WIP]
+void skillsHighGoal(){
+  spinUp();
+  wait(5, sec);
+  autoConveyor();
+  wait(24, sec);
+  flyWheelStop();
+  conveyorStop();
+  moveToPosSkills(2);
+  expandSkill();
+}
+
+// This program will move into position.(1 is from roller position, 2 is from highGoal position) [WIP]
+void moveToPosSkills(int whichSkills){
+  if (whichSkills == 1)
+  {
+    tankTurn(degreesToDist(45));
+    mechTranslate(inchesToDist(-15));
+  }
+  else if (whichSkills == 2)
+  {
+    mechTranslate(inchesToDist(15));
+    allForward(inchesToDist(30));
+    tankTurn(degreesToDist(-45));
+  }
 }

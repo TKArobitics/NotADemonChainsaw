@@ -131,7 +131,7 @@ void autonTurnRollerRed()
 
 void turnRollerTrue(int amount)
 {
-  rollerMotor.spinFor(reverse, amount, degrees);
+  rollerMotor.spinFor(forward, amount, degrees);
 }
 
 
@@ -177,7 +177,7 @@ void allForward(int dist)
 // This function will translationally drive in one direction (positive dist will go to the right, negative dist ill go to the left)
 void mechTranslate(int dist)
 {
-  setMotors(80);
+  setMotors(60);
   frontLeftDrive.spinFor(forward, dist, degrees, false);
   frontRightDrive.spinFor(forward, dist, degrees, false);
   backRightDrive.spinFor(reverse, dist, degrees, false);
@@ -363,8 +363,9 @@ double inchesToDist(double inches){
 }
 
 // This function will convery degrees to "dist" and return it as a double (decimal number) [WIP]
+// 1000 dist = 110 deg
 double degreesToDist(double degrees){
-  float conversionConst = 1;
+  float conversionConst = 100/11;
   double dist = degrees * conversionConst;
   return dist;
 }
@@ -386,12 +387,15 @@ void autonomous(void)
   // skillsRollersFirst();
   // testDriveDist(360);
   // guaranteedShooter();
+  
   // guaranteedShortRoller();
   // guaranteedLongRoller();
+  
+  // skillsRoller();
+  skillsHighGoal();
+
   // testingConversionInches();
-  testingConversionDegrees();
-
-
+  // testingConversionDegrees();
   controller1.Screen.print("Finished Autonomous");
 }
 

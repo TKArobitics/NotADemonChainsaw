@@ -7,4 +7,6 @@ void guaranteedShooter();
 void guaranteedShortRoller();
 void testingConversionInches();
 void testingConversionDegrees();
-
+void skillsRoller();
+void skillsHighGoal();
+void moveToPosSkills(int);
