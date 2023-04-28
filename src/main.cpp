@@ -147,7 +147,7 @@ void autoPusher(int time){
 
 // This function will start the conveyorMotor
 void autoConveyor(){
-  conveyorMotor.spin(reverse, 80, pct);
+  conveyorMotor.spin(reverse, 50, pct);
 }
 
 // This function will stop the conveyorMotor
@@ -171,7 +171,7 @@ void allForward(int dist)
   frontLeftDrive.spinFor(forward, dist, degrees, false);
   frontRightDrive.spinFor(reverse, dist, degrees, false);
   backRightDrive.spinFor(reverse, dist, degrees, false);
-  backLeftDrive.spinFor(forward, dist, degrees);
+  backLeftDrive.spinFor(forward, dist, degrees, true);
 }
 
 // This function will translationally drive in one direction (positive dist will go to the right, negative dist ill go to the left)
@@ -181,7 +181,7 @@ void mechTranslate(int dist)
   frontLeftDrive.spinFor(forward, dist, degrees, false);
   frontRightDrive.spinFor(forward, dist, degrees, false);
   backRightDrive.spinFor(reverse, dist, degrees, false);
-  backLeftDrive.spinFor(reverse, dist, degrees);
+  backLeftDrive.spinFor(reverse, dist, degrees, true);
 }
 
 // This function will spin all motors in one direction (positive "dist" will move forwards, negative "dist" will move reverse) Additionally this program will not wait to complete before moving to the next function
@@ -349,27 +349,23 @@ void skills()
   expandSkill();
 }
 
-// [THIS PROGRAM IS OUTDATED REMOVE PLEASE!!!]
-void driveForward(int duration)
-{
-
-  frontLeftDrive.spin(forward);
-  frontRightDrive.spin(reverse);
-  backLeftDrive.spin(forward);
-  backRightDrive.spin(reverse);
-}
-
 // 1000 dist = 24.5 inches
 // 360 dist = 9.25 inches
 void testDriveDist(int dist){ 
   allForward(dist);
 }
 
-// This program will convert inches to "dist" and return it as a double (decimal number) [WIP]
-double  inchesToDist(double inches){
-  float conversionConst = 40.8; // approx.= 40 (2000/49)
-  setMotors(20);
+// This program will convert inches to "dist" and return it as a double (decimal number)
+double inchesToDist(double inches){
+  float conversionConst = 40.8;
   double dist = inches * (conversionConst);
+  return dist;
+}
+
+// This function will convery degrees to "dist" and return it as a double (decimal number) [WIP]
+double degreesToDist(double degrees){
+  float conversionConst = 1;
+  double dist = degrees * conversionConst;
   return dist;
 }
 
@@ -392,7 +388,9 @@ void autonomous(void)
   // guaranteedShooter();
   // guaranteedShortRoller();
   // guaranteedLongRoller();
-  testingConversionInches();
+  // testingConversionInches();
+  testingConversionDegrees();
+
 
   controller1.Screen.print("Finished Autonomous");
 }

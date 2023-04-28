@@ -25,6 +25,11 @@ void testingConversionInches(){
   allForward(inchesToDist(45));
 }
 
+// This function tests if degreesToDist() function works properly.
+void testingConversionDegrees(){
+  tankTurn(degreesToDist(1000));
+}
+
 void blueShort(){ // please comment on what each line does
   // replaceOnControllerScreen("Running BlueShort");
   // startLauncher(80);
@@ -92,18 +97,22 @@ void skillsDisksFirst(){
   expandStop(); // stops the expansion motor
 } 
 
+// tankTurn(dist "999") approx.= 90 deg turn<uncertain>
 // This program should turn one roller on the long side (???) and fire two pre-loads at the high goal [HEAD TO HEAD CODE!] 
 void guaranteedLongRoller(){
   controller1.Screen.clearScreen();
   controller1.Screen.print("Running guaranteedLongRoller");
-  setMotors(20);
-  allForward(inchesToDist(2));
-  mechTranslate(inchesToDist(18));
-  allForwardc(inchesToDist(-2.5));
+  // setMotors(20);
+  allForward(inchesToDist(6));
+  mechTranslate(inchesToDist(20));
+  allForwardc(inchesToDist(-4));
   turnRoller(600);  // check specific values later
-  allForward(inchesToDist(300));
-  // tankTurn(-360); no need, already facing high goal
+  wait(250, msec);
+  allForward(inchesToDist(3));
+  tankTurn(240);
+  mechTranslate(inchesToDist(-75));
   spinUp();
+  wait(5, sec);
   autoConveyor();
   controller1.Screen.print("Finished guaranteedLongRoller");
 }

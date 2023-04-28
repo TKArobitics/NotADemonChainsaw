@@ -3,6 +3,7 @@
 void startLauncher(int);
 void autoPusher(int);
 double inchesToDist(double);
+double degreesToDist(double);
 void printFlyWheelSpeed(int);
 void autoConveyor(int);
 void tankTurn(int);
@@ -19,3 +20,4 @@ void conveyorStop();
 void flyWheelStop();
 void expandSkill();
 void expandStop();
+void degreeConversionTest();
