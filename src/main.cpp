@@ -52,6 +52,31 @@ void pre_auton(void)
 //   Brain.Screen.print(myMessage);
 // }
 
+void autoRollerBlue ()
+{
+  colorSensor.takeSnapshot(colorSensor__REDSIDE);
+  if (colorSensor.objectCount > 0)
+  {
+    rollerMotor.spin(forward, 35, pct);
+  }
+  else
+  {
+    rollerMotor.stop();
+  }  
+}
+void autoRollerRed ()
+{
+  colorSensor.takeSnapshot(colorSensor__BLUESIDE);
+  if (colorSensor.objectCount > 0)
+  {
+    rollerMotor.spin(forward, 35, pct);
+  }
+  else
+  {
+    rollerMotor.stop();
+  }  
+}
+
 void setMotors(int prct)
 {
   frontLeftDrive.setVelocity(prct, pct);
@@ -68,6 +93,39 @@ void rightSideOnly(int dist){
 void turnRoller(int amount)
 {
   rollerMotor.spinFor(reverse, amount, degrees, false);
+}
+
+bool rollerIsCorrect = false;
+
+
+//turns the roller to the blue side durring autonomous
+void autonTurnRollerBlue()
+{
+  while(rollerIsCorrect==1){
+    colorSensor.takeSnapshot(colorSensor__REDSIDE);
+    if (colorSensor.objectCount > 0){
+      rollerMotor.spin(forward, 35, pct);
+    }
+    else{
+      rollerMotor.stop();
+      rollerIsCorrect = true;
+    }  
+  }
+}
+
+//turns the roller to the red side durring autonomous 
+void autonTurnRollerRed()
+{
+  while(rollerIsCorrect==1){
+    colorSensor.takeSnapshot(colorSensor__BLUESIDE);
+    if (colorSensor.objectCount > 0){
+      rollerMotor.spin(forward, 35, pct);
+    }
+    else{
+      rollerMotor.stop();
+      rollerIsCorrect = true;
+    }  
+  }
 }
 
 void turnRollerTrue(int amount)
@@ -297,6 +355,8 @@ void autonomous(void)
   // getOtherRoller();
   // autonomousSkills();
   skillsDisksFirst();
+  // autonTurnRollerBlue();
+  // autonTurnRollerRed();
   // skillsRollersFirst();
   // testDriveDist(360);
   // guaranteedShooter();
@@ -384,32 +444,6 @@ void rollerSpeed()
     fastRoller = true;
   }
 }
-
-void autoRollerBlue ()
-{
-  colorSensor.takeSnapshot(colorSensor__REDSIDE);
-  if (colorSensor.objectCount > 0)
-  {
-    rollerMotor.spin(forward, 35, pct);
-  }
-  else
-  {
-    rollerMotor.stop();
-  }  
-}
-void autoRollerRed ()
-{
-  colorSensor.takeSnapshot(colorSensor__BLUESIDE);
-  if (colorSensor.objectCount > 0)
-  {
-    rollerMotor.spin(forward, 35, pct);
-  }
-  else
-  {
-    rollerMotor.stop();
-  }  
-}
-
 
 // allows for forward and reverse control of the roller
 void rollerThing()
@@ -889,7 +923,7 @@ void whatColorBlue()
 }
 
 
-int flyWheelSpeed = 75;
+int flyWheelSpeed = 65;
 
 // int flyWheelAdjustment(){
 //   if(controller1.ButtonUp.pressing() && flyWheelSpeed < 100){

@@ -82,7 +82,7 @@ void skillsDisksFirst(){ // This program should fire all of the pre-load and mat
   controller1.Screen.print("expanding");
   expandSkill(); // triggers the expansion motor (DOES NOT TURN OFF)
   wait(5, sec); // waits for expansion motor to pull pin
-  // expandStop(); // stops the expansion motor
+  expandStop(); // stops the expansion motor
 } 
 
 void guaranteedLongRoller(){
