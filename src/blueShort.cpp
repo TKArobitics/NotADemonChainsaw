@@ -207,6 +207,21 @@ void skillsRollersFirst(){
   expandStop();
 }
 
+// This program will move into position.(1 is from roller position, 2 is from highGoal position) [WIP]
+void moveToPosSkills(int whichSkills){
+  if (whichSkills == 1)
+  {
+    tankTurn(degreesToDist(45));
+    mechTranslate(inchesToDist(-15));
+  }
+  else if (whichSkills == 2)
+  {
+    mechTranslate(inchesToDist(15));
+    allForward(inchesToDist(30));
+    tankTurn(degreesToDist(-45));
+  }
+}
+
 // This program will spin a roller, move into position, and expand. [WIP]
 void skillsRoller(){
   allForward(inchesToDist(-1));
@@ -223,17 +238,3 @@ void skillsHighGoal(){
   expandSkill();
 }
 
-// This program will move into position.(1 is from roller position, 2 is from highGoal position) [WIP]
-void moveToPosSkills(int whichSkills){
-  if (whichSkills == 1)
-  {
-    tankTurn(degreesToDist(45));
-    mechTranslate(inchesToDist(-15));
-  }
-  else if (whichSkills == 2)
-  {
-    mechTranslate(inchesToDist(15));
-    allForward(inchesToDist(30));
-    tankTurn(degreesToDist(-45));
-  }
-}
