@@ -10,3 +10,6 @@ void testingConversionDegrees();
 void skillsRoller();
 void skillsHighGoal();
 void moveToPosSkills(int);
+void skillsMorePoints();
+void autoWinPoint();
+void longRollerTest();

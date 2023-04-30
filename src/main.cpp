@@ -93,7 +93,7 @@ void rightSideOnly(int dist){
 
 void turnRoller(int amount)
 {
-  rollerMotor.spinFor(reverse, amount, degrees, false);
+  rollerMotor.spinFor(forward, amount, degrees, false);
 }
 
 bool rollerIsCorrect = false;
@@ -174,7 +174,7 @@ void allForward(int dist)
   backLeftDrive.spinFor(forward, dist, degrees, true);
 }
 
-// This function will translationally drive in one direction (positive dist will go to the right, negative dist ill go to the left)
+// This function will translationally drive in one direction (positive dist will go to the right, negative dist will go to the left)
 void mechTranslate(int dist)
 {
   setMotors(60);
@@ -207,9 +207,11 @@ void allExtraStop(){
 
 // This function should start the flywheelMotor in the forward direction.
 void spinUp(){
-  flyWheel.spin(forward,100,pct);
+  flyWheel.spin(forward,70,pct);
 }
-
+void spinUp(int amount){
+  flyWheel.spin(forward,amount,pct);
+}
 // This function will start spinning the drivetrain (try not to use this)
 void allStart()
 {
@@ -390,9 +392,13 @@ void autonomous(void)
   
   // guaranteedShortRoller();
   // guaranteedLongRoller();
+  // autoWinPoint();
+  longRollerTest();
+
   
   // skillsRoller();
-  skillsHighGoal();
+  // skillsHighGoal();
+  // skillsMorePoints();
 
   // testingConversionInches();
   // testingConversionDegrees();
@@ -956,7 +962,7 @@ void whatColorBlue()
 }
 
 
-int flyWheelSpeed = 65;
+int flyWheelSpeed = 70;
 
 void printFlyWheelSpeed(int speed){
   controller1.Screen.clearScreen();

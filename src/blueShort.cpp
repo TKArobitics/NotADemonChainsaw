@@ -110,12 +110,31 @@ void guaranteedLongRoller(){
   turnRoller(600);  // check specific values later
   wait(250, msec);
   allForward(inchesToDist(3));
-  tankTurn(200);
-  mechTranslate(inchesToDist(-75));
-  spinUp();
+  controller1.Screen.print("Finished guaranteedLongRoller");
+}
+
+void longRollerTest(){
+  allForward(inchesToDist(-25));
+  tankTurn(degreesToDist(45));
+  allForward(inchesToDist(-3));
+  autonTurnRollerBlue();
+  // autonTurnRollerRed();
+}
+
+void autoWinPoint(){
+  allForward(inchesToDist(6));
+  mechTranslate(inchesToDist(25));
+  allForward(inchesToDist(-5));
+  turnRoller(600);
+  wait(250, msec);
+  allForward(inchesToDist(3));
+  tankTurn(degreesToDist(25));
+  mechTranslate(inchesToDist(-8));
+  tankTurn(degreesToDist(20));
+  mechTranslate(inchesToDist(-60));
+  spinUp(100);
   wait(5, sec);
   autoConveyor();
-  controller1.Screen.print("Finished guaranteedLongRoller");
 }
 
 // This program will move forward and turn the roller directly in front of itself 180 degrees
@@ -135,7 +154,7 @@ void guaranteedShooter(){
   spinUp();
   wait(5, sec);
   autoConveyor();
-  wait(24, sec);
+  wait(30, sec);
   flyWheelStop();
   conveyorStop();
   controller1.Screen.print("Finished guaranteedShooter");
@@ -216,9 +235,19 @@ void moveToPosSkills(int whichSkills){
   }
   else if (whichSkills == 2)
   {
-    mechTranslate(inchesToDist(15));
-    allForward(inchesToDist(30));
+    mechTranslate(inchesToDist(-10));
+    allForward(inchesToDist(-30));
     tankTurn(degreesToDist(-45));
+    mechTranslate(inchesToDist(-15));
+  }
+  else if(whichSkills == 3){
+    mechTranslate(inchesToDist(-10));
+    allForward(inchesToDist(-40));
+    tankTurn(degreesToDist(-80));
+    allForward(inchesToDist(-8));
+    turnRoller(200);
+    allForward(inchesToDist(8));
+    tankTurn(degreesToDist(120));
   }
 }
 
@@ -236,5 +265,11 @@ void skillsHighGoal(){
   guaranteedShooter();
   moveToPosSkills(2);
   expandSkill();
+}
+
+void skillsMorePoints(){
+  // guaranteedShooter();
+  moveToPosSkills(3);
+  // expandSkill();    
 }
 
